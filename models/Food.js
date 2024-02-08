@@ -9,6 +9,10 @@ const FoodSchema = new mongoose.Schema({
     type: String,
     require: [true, "Please, input the food's description"],
   },
+  ingredients: {
+    type: String,
+    require: [true, "Please, input the food's ingredients"],
+  },
 });
 
 export default mongoose.models.Food || mongoose.model("Food", FoodSchema);
