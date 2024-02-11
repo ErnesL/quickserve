@@ -14,9 +14,9 @@ const FoodSchema = new mongoose.Schema(
       type: String,
       require: [true, "Please, input the food's ingredients"],
     },
-    cost: {
+    price: {
       type: Number,
-      require: [true, "Please, input the food's cost"],
+      require: [true, "Please, input the food's cost with the format 0.00"],
     },
     processed: {
       type: Boolean,
