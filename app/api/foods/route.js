@@ -3,9 +3,10 @@ import Food from "@/models/Food";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { title, description } = await request.json();
+  const { title, description, ingredients, price, processed } =
+    await request.json();
   await connectDB();
-  await Food.create({ title, description });
+  await Food.create({ title, description, ingredients, price, processed });
   return NextResponse.json({ message: "Food created" }, { status: 201 });
 }
 

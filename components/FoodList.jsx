@@ -32,6 +32,12 @@ export default async function FoodList() {
             <p className="font-normal text-gray-700 dark:text-gray-400">
               {f.description}
             </p>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              {f.ingredients}
+            </p>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              ${f.price}
+            </p>
           </a>
         </div>
       ))}
