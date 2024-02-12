@@ -20,6 +20,7 @@ export default async function FoodList() {
 
   return (
     <>
+
       <div className="flex flex-wrap p-2 justify-center">
         {foods.map((f) => (
           <div className="p-3" key={f}>
@@ -33,12 +34,20 @@ export default async function FoodList() {
                   {f.title}
                 </h5>
               </div>
+  
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              {f.ingredients}
+            </p>
+
 
               <div className="self-center p-2">
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   {f.description}
                 </p>
               </div>
+            <p className="font-normal text-gray-700 dark:text-gray-400">
+              ${f.price}
+            </p>
 
               <div className="flex self-end self-center justify-center space-x-4 items-center p-4 bg-red-50">
                 <button className="btn bg-blue-50 p-3 rounded-3xl">
