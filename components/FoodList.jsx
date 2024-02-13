@@ -46,7 +46,7 @@ export default async function FoodList() {
                 </p>
               </div>
             <p className="font-normal text-gray-700 dark:text-gray-400">
-              ${f.price}
+            ${f.price}
             </p>
 
               <div className="flex self-end self-center justify-center space-x-4 items-center p-4 bg-red-50">
@@ -67,3 +67,4 @@ export default async function FoodList() {
     </>
   );
 }
+
