@@ -20,11 +20,13 @@ export default async function FoodList() {
 
   return (
     <>
-
       <div className="flex flex-wrap p-2 justify-center">
         {foods.map((f) => (
-          <div className="p-3" key={f}>
-            <div className="block flex flex-col justify-between content-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-w-80 min-h-80">
+          <div
+            className="p-3"
+            key={f}
+          >
+            <div className="flex flex-col justify-between content-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-w-80 min-h-80">
               <div className="min-w-80 min-h-80 bg-green-50 p-1">
                 <h1> IMAGEN</h1>
               </div>
@@ -34,22 +36,21 @@ export default async function FoodList() {
                   {f.title}
                 </h5>
               </div>
-  
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              {f.ingredients}
-            </p>
 
+              <p className="font-normal text-gray-700 dark:text-gray-400">
+                {f.ingredients}
+              </p>
 
               <div className="self-center p-2">
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                   {f.description}
                 </p>
               </div>
-            <p className="font-normal text-gray-700 dark:text-gray-400">
-              ${f.price}
-            </p>
+              <p className="font-normal text-gray-700 dark:text-gray-400">
+                ${f.price}
+              </p>
 
-              <div className="flex self-end self-center justify-center space-x-4 items-center p-4 bg-red-50">
+              <div className="flex self-center justify-center space-x-4 items-center p-4 bg-red-50">
                 <button className="btn bg-blue-50 p-3 rounded-3xl">
                   <h1>-</h1>
                 </button>
