@@ -1,7 +1,7 @@
 "use client";
-import Link from "next/link";
+import React, { useState, useEffect } from "react";
 
-import { useState, useEffect } from "react";
+
 
 const getFoods = async () => {
   try {
@@ -23,24 +23,36 @@ const getFoods = async () => {
 export default function FoodList() {
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
+  const [cart, setCart] = useState([]);
 
   const decrementQuantity = (index) => {
-    setQuantities(
-      quantities.map((qty, i) => (i === index ? Math.max(qty - 1, 0) : qty))
+    setQuantities((prevQuantities) =>
+      prevQuantities.map((qty, i) => (i === index ? Math.max(qty - 1, 0) : qty))
     );
+    updateCart(index, quantities[index] - 1);
   };
 
   const incrementQuantity = (index) => {
-    setQuantities(quantities.map((qty, i) => (i === index ? qty + 1 : qty)));
+    setQuantities((prevQuantities) =>
+      prevQuantities.map((qty, i) => (i === index ? qty + 1 : qty))
+    );
+    updateCart(index, quantities[index] + 1);
+  };
+
+  const updateCart = (index, quantity) => {
+    const updatedCart = [...cart];
+    updatedCart[index] = { ...foods[index], quantity };
+    setCart(updatedCart);
   };
 
   useEffect(() => {
-    // Utilizamos useEffect para llamar a getFoods cuando el componente se monte.
     const fetchData = async () => {
       const foodsData = await getFoods();
       setFoods(foodsData.foods);
       // Inicializamos quantities con la misma longitud que foodsData.
-      setQuantities(foods.map(() => 0));
+      setQuantities(foodsData.foods.map(() => 0));
+      // Inicializamos cart con la misma longitud que foodsData, con cada objeto en el carrito que tiene la información del alimento y la cantidad inicializada en 0.
+      setCart(foodsData.foods.map((food) => ({ ...food, quantity: 0 })));
     };
     fetchData();
   }, []);
@@ -50,10 +62,7 @@ export default function FoodList() {
       <div className="flex flex-wrap p-2 justify-center">
         {Array.isArray(foods) ? (
           foods.map((food, index) => (
-            <div
-              className="p-3"
-              key={food.id || index}
-            >
+            <div className="p-3" key={food.id || index}>
               <div className="flex flex-col justify-between content-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-w-80 min-h-80">
                 <div className="min-w-80 min-h-80 bg-green-50 p-1">
                   <h1> IMAGEN</h1>
@@ -79,13 +88,13 @@ export default function FoodList() {
                 </p>
 
                 <div className="flex self-center justify-center space-x-4 items-center p-4 bg-red-50">
-                  <button className="btn bg-blue-50 p-3 rounded-3xl">
+                  <button className="btn bg-blue-50 p-3 rounded-3xl" onClick={() => decrementQuantity(index)}>
                     <h1>-</h1>
                   </button>
 
-                  <p>0</p>
+                  <p>{quantities[index]}</p>
 
-                  <button className="btn bg-blue-50 p-3 rounded-3xl">
+                  <button className="btn bg-blue-50 p-3 rounded-3xl" onClick={() => incrementQuantity(index)}>
                     <h1>+</h1>
                   </button>
                 </div>
@@ -95,6 +104,17 @@ export default function FoodList() {
         ) : (
           <p>Cargando alimentos...</p>
         )}
+      </div>
+  
+      <div>
+        <h2>Carrito</h2>
+        <ul>
+          {cart.map((item, index) => (
+            <li key={index}>
+              {item.title} - Cantidad: {item.quantity}
+            </li>
+          ))}
+        </ul>
       </div>
     </>
   );

@@ -89,6 +89,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
+              <Link href = "#">
               <Image
                 className="grid justify-items-center"
                 alt="Cart"
@@ -98,8 +99,10 @@ export default function NavBar() {
                   height: "auto",
                 }}
               />
+              </Link>
             </li>
           </ul>
+          
         </div>
       </div>
     </nav>
