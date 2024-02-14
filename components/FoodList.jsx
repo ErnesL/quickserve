@@ -47,6 +47,19 @@ export default function FoodList() {
     const updatedCart = [...cart];
     updatedCart[index] = { ...foods[index], quantity };
     setCart(updatedCart);
+    console.log(updatedCart);
+  };
+
+  const calculateInvoice = (updatedCart) => {
+    var subtotal = 0;
+    var taxes = 0;
+    var total = 0;
+    for (let i = 0; i < updatedCart.length; i++) {
+      subtotal += updatedCart[i].price * updatedCart[i].quantity;
+    }
+    taxes = subtotal * 0.15;
+    total = subtotal + taxes;
+    return { subtotal, taxes, total };
   };
 
   useEffect(() => {
@@ -61,6 +74,7 @@ export default function FoodList() {
 
   // Filtrar el carrito para mostrar solo los elementos con cantidad mayor a 0
   const filteredCart = cart.filter((item, index) => quantities[index] > 0);
+  const { subtotal, taxes, total } = calculateInvoice(filteredCart);
 
   return (
     <>
@@ -189,7 +203,8 @@ export default function FoodList() {
           </h4>
           <br />
           <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-            Subtotal de la orden: {} <br /> <br /> Taxes: {} <br /> <br /> Total: {}
+            Subtotal de la orden: ${subtotal} <br /> <br /> Taxes: ${taxes}{" "}
+            <br /> <br /> Total: ${total}
           </h6>
         </div>
       </div>
