@@ -23,11 +23,9 @@ export default async function FoodListAdmin() {
 
   return (
     <>
-    <Link href={`/admin/addFood`}>
-              <div className="bg-slate-500">
-                añadir nueva comida
-              </div>
-            </Link>
+      <Link href={`/admin/addFood`}>
+        <div className="bg-slate-500 pt-20">añadir nueva comida</div>
+      </Link>
       {foods.map((t) => (
         <div
           key={t._id}

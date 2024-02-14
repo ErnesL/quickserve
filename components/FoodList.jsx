@@ -78,7 +78,7 @@ export default function FoodList() {
 
   return (
     <>
-      <div className="flex flex-wrap p-2 justify-center">
+      <div className="flex flex-wrap p-2 justify-center pt-20">
         {Array.isArray(foods) ? (
           foods.map((food, index) => (
             <div className="p-3" key={food.id || index}>
