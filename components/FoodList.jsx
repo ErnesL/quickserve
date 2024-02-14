@@ -53,12 +53,14 @@ export default function FoodList() {
   const calculateInvoice = (updatedCart) => {
     var subtotal = 0;
     var taxes = 0;
+    var unroundedTotal = 0;
     var total = 0;
     for (let i = 0; i < updatedCart.length; i++) {
       subtotal += updatedCart[i].price * updatedCart[i].quantity;
     }
-    taxes = subtotal * 0.15;
-    total = subtotal + taxes;
+    taxes = parseFloat((subtotal * 0.15).toFixed(2));
+    unroundedTotal = subtotal + taxes;
+    total = parseFloat(unroundedTotal.toFixed(2));
     return { subtotal, taxes, total };
   };
 
