@@ -89,7 +89,7 @@ export default function NavBar() {
               </Link>
             </li>
             <li>
-              <Link href = "#">
+              <Link href = "/cart">
               <Image
                 className="grid justify-items-center"
                 alt="Cart"
