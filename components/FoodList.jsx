@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 
 
-
 const getFoods = async () => {
   try {
     const response = await fetch("http://localhost:3000/api/foods", {
@@ -29,7 +28,7 @@ export default function FoodList() {
     setQuantities((prevQuantities) =>
       prevQuantities.map((qty, i) => (i === index ? Math.max(qty - 1, 0) : qty))
     );
-    updateCart(index, quantities[index] - 1);
+    updateCart(index, Math.max(quantities[index] - 1, 0));
   };
 
   const incrementQuantity = (index) => {
@@ -49,13 +48,14 @@ export default function FoodList() {
     const fetchData = async () => {
       const foodsData = await getFoods();
       setFoods(foodsData.foods);
-      // Inicializamos quantities con la misma longitud que foodsData.
       setQuantities(foodsData.foods.map(() => 0));
-      // Inicializamos cart con la misma longitud que foodsData, con cada objeto en el carrito que tiene la información del alimento y la cantidad inicializada en 0.
       setCart(foodsData.foods.map((food) => ({ ...food, quantity: 0 })));
     };
     fetchData();
   }, []);
+
+  // Filtrar el carrito para mostrar solo los elementos con cantidad mayor a 0
+  const filteredCart = cart.filter((item, index) => quantities[index] > 0);
 
   return (
     <>
@@ -105,13 +105,13 @@ export default function FoodList() {
           <p>Cargando alimentos...</p>
         )}
       </div>
-  
+      
       <div>
         <h2>Carrito</h2>
         <ul>
-          {cart.map((item, index) => (
+          {filteredCart.map((item, index) => (
             <li key={index}>
-              {item.title} - Cantidad: {item.quantity}
+              {item.title} - Cantidad: {item.quantity} - Item Price: {item.price}
             </li>
           ))}
         </ul>
