@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-
 const getFoods = async () => {
   try {
     const response = await fetch("http://localhost:3000/api/foods", {
@@ -23,6 +22,12 @@ export default function FoodList() {
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [cart, setCart] = useState([]);
+
+  const [texto, setTexto] = useState("");
+
+  const handleChange = (event) => {
+    setTexto(event.target.value);
+  };
 
   const decrementQuantity = (index) => {
     setQuantities((prevQuantities) =>
@@ -87,14 +92,20 @@ export default function FoodList() {
                   ${food.price}
                 </p>
 
-                <div className="flex self-center justify-center space-x-4 items-center p-4 bg-red-50">
-                  <button className="btn bg-blue-50 p-3 rounded-3xl" onClick={() => decrementQuantity(index)}>
+                <div className="flex self-center justify-center space-x-4 items-center p-4">
+                  <button
+                    className="btn bg-white p-3 rounded-3xl"
+                    onClick={() => decrementQuantity(index)}
+                  >
                     <h1>-</h1>
                   </button>
 
-                  <p>{quantities[index]}</p>
+                  <p className="text-white">{quantities[index]}</p>
 
-                  <button className="btn bg-blue-50 p-3 rounded-3xl" onClick={() => incrementQuantity(index)}>
+                  <button
+                    className="btn bg-white p-3 rounded-3xl"
+                    onClick={() => incrementQuantity(index)}
+                  >
                     <h1>+</h1>
                   </button>
                 </div>
@@ -105,16 +116,82 @@ export default function FoodList() {
           <p>Cargando alimentos...</p>
         )}
       </div>
-      
-      <div>
-        <h2>Carrito</h2>
-        <ul>
-          {filteredCart.map((item, index) => (
-            <li key={index}>
-              {item.title} - Cantidad: {item.quantity} - Item Price: {item.price}
-            </li>
-          ))}
-        </ul>
+      <br />
+      <hr className="border-t-4 border-black" />
+      <br />
+      <div className="flex">
+        <div className="min-w-[60vw] max-w-[60vw] grid grid-cols-1 p-3">
+          <h4 className="mb-2 justify-self-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+            Carrito
+          </h4>
+          <ul>
+            {filteredCart.map((item, index) => (
+              <li key={index}>
+                <div className="flex justify-center p-1 m-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                  <div className="p-6 min-w-[40%]">PHOTO</div>
+
+                  <div className="p-6 min-w-[50%]">
+                    <div>
+                      <h8 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
+                        {item.title}
+                      </h8>
+                    </div>
+
+                    <div>
+                      <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
+                        Cantidad: {item.quantity} <br /> Item Price: $
+                        {item.price} <br /> Subttl: $
+                        {item.price * item.quantity}
+                      </p>
+                    </div>
+
+                    <div className="flex self-center justify-center space-x-4 items-center p-4">
+                      <button
+                        className="btn bg-white p-3 rounded-3xl"
+                        onClick={() => decrementQuantity(index)}
+                      >
+                        <h1>-</h1>
+                      </button>
+
+                      <p className="text-white">{item.quantity}</p>
+
+                      <button
+                        className="btn bg-white p-3 rounded-3xl"
+                        onClick={() => incrementQuantity(index)}
+                      >
+                        <h1>+</h1>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            ))}
+
+            <div className="p-3 flex justify-center">
+              <form action="">
+                {/* 
+                        <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
+                <label
+                  className="font-normal text-gray-700 dark:text-gray-400 p-1"
+                  for="GET-notes"
+                >
+                  Notas de la orden <br />
+                </label>
+                <input type="text" value={texto} onChange={handleChange} />
+              </form>
+            </div>
+          </ul>
+        </div>
+
+        <div className="flex flex-col p-3 min-w-[40vw] max-w-[40vw]">
+          <h4 className="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+            Factura
+          </h4>
+          <br />
+          <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
+            Subtotal de la orden: {} <br /> <br /> Taxes: {} <br /> <br /> Total: {}
+          </h6>
+        </div>
       </div>
     </>
   );
