@@ -80,6 +80,8 @@ export default function FoodList() {
   const filteredCart = cart.filter((item, index) => quantities[index] > 0);
   const { subtotal, taxes, total } = calculateInvoice(filteredCart);
 
+  //Es necesario declarar una funcion let foodCart en la cual se almacene el carrito de compras
+
   return (
     <>
       <div className="flex flex-wrap p-2 justify-center pt-20">
