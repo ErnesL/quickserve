@@ -46,7 +46,7 @@ export default function EditFoodForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-3 pt-20">
       <input
         onChange={(e) => setNewTitle(e.target.value)}
         value={newTitle}
