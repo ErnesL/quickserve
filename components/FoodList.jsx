@@ -189,16 +189,14 @@ export default function FoodList() {
             ))}
 
             <div className="p-3 flex justify-center">
-              <form action="">
+            <form action="">
                 {/* 
                         <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
-                <label
-                  className="font-normal text-gray-700 dark:text-gray-400 p-1"
-                  // for="GET-notes"
-                >
-                  Notas de la orden <br />
+                <label className="font-normal text-gray-700 dark:text-gray-400 p-1">
+                  Notas de la orden <br /> <br />
                 </label>
                 <input
+                  className="border-b border-black"
                   type="text"
                   value={texto}
                   onChange={handleChange}
