@@ -85,10 +85,7 @@ export default function FoodList() {
       <div className="flex flex-wrap p-2 justify-center pt-20">
         {Array.isArray(foods) ? (
           foods.map((food, index) => (
-            <div
-              className="p-3"
-              key={food.id || index}
-            >
+            <div className="p-3" key={food.id || index}>
               <div className="flex flex-col justify-between content-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-w-80 min-h-80">
                 <div className="min-w-80 min-h-80 bg-green-50 p-1">
                   <h1> IMAGEN</h1>
@@ -148,8 +145,8 @@ export default function FoodList() {
           <ul>
             {filteredCart.map((item, index) => (
               <li key={index}>
-                <div className="flex justify-center p-1 m-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                  <div className="p-6 min-w-[40%]">PHOTO</div>
+                <div className="flex justify-center p-6 m-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                  <div className="p-6 min-w-[40%] bg-green-50">PHOTO</div>
 
                   <div className="p-6 min-w-[50%]">
                     <div>
@@ -189,7 +186,7 @@ export default function FoodList() {
             ))}
 
             <div className="p-3 flex justify-center">
-            <form action="">
+              <form action="">
                 {/* 
                         <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
                 <label className="font-normal text-gray-700 dark:text-gray-400 p-1">
