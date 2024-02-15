@@ -18,6 +18,8 @@ const getFoods = async () => {
   }
 };
 
+const cartList = [];
+
 export default function FoodList() {
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
@@ -83,7 +85,10 @@ export default function FoodList() {
       <div className="flex flex-wrap p-2 justify-center pt-20">
         {Array.isArray(foods) ? (
           foods.map((food, index) => (
-            <div className="p-3" key={food.id || index}>
+            <div
+              className="p-3"
+              key={food.id || index}
+            >
               <div className="flex flex-col justify-between content-center max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 min-w-80 min-h-80">
                 <div className="min-w-80 min-h-80 bg-green-50 p-1">
                   <h1> IMAGEN</h1>
@@ -148,9 +153,9 @@ export default function FoodList() {
 
                   <div className="p-6 min-w-[50%]">
                     <div>
-                      <h8 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
+                      <h4 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
                         {item.title}
-                      </h8>
+                      </h4>
                     </div>
 
                     <div>
@@ -189,11 +194,15 @@ export default function FoodList() {
                         <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
                 <label
                   className="font-normal text-gray-700 dark:text-gray-400 p-1"
-                  for="GET-notes"
+                  // for="GET-notes"
                 >
                   Notas de la orden <br />
                 </label>
-                <input type="text" value={texto} onChange={handleChange} />
+                <input
+                  type="text"
+                  value={texto}
+                  onChange={handleChange}
+                />
               </form>
             </div>
           </ul>
