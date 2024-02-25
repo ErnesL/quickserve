@@ -113,15 +113,9 @@ export default function FoodList() {
                   ${food.price}
                 </p>
 
-<<<<<<< HEAD
-                <div className="flex self-center justify-center space-x-4 items-center p-4 bg-red-50">
-                  <button
-                    className="btn bg-blue-50 p-3 rounded-3xl"
-=======
                 <div className="flex self-center justify-center space-x-4 items-center p-4">
                   <button
                     className="btn bg-white p-3 rounded-3xl"
->>>>>>> develop
                     onClick={() => decrementQuantity(index)}
                   >
                     <h1>-</h1>
@@ -130,11 +124,7 @@ export default function FoodList() {
                   <p className="text-white">{quantities[index]}</p>
 
                   <button
-<<<<<<< HEAD
-                    className="btn bg-blue-50 p-3 rounded-3xl"
-=======
                     className="btn bg-white p-3 rounded-3xl"
->>>>>>> develop
                     onClick={() => incrementQuantity(index)}
                   >
                     <h1>+</h1>
@@ -147,19 +137,6 @@ export default function FoodList() {
           <p>Cargando alimentos...</p>
         )}
       </div>
-<<<<<<< HEAD
-
-      <div>
-        <h2>Carrito</h2>
-        <ul>
-          {filteredCart.map((item, index) => (
-            <li key={index}>
-              {item.title} - Cantidad: {item.quantity} - Item Price:{" "}
-              {item.price}
-            </li>
-          ))}
-        </ul>
-=======
       <br />
       <hr className="border-t-4 border-black" />
       <br />
@@ -239,7 +216,6 @@ export default function FoodList() {
             <br /> <br /> Total: ${total}
           </h6>
         </div>
->>>>>>> develop
       </div>
     </>
   );
