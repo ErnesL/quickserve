@@ -40,7 +40,7 @@ export default function addFoodForm() {
 
   return (
     <>
-      <div className="h-5"></div>
+      <div className="h-5 pt-20"></div>
       <form
         onSubmit={handleSubmit}
         className=" w-1/2 flex m-auto flex-col gap-3 bg-slate-900 max-w-xs p-5 rounded-2xl"
