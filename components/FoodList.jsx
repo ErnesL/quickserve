@@ -22,8 +22,8 @@ export default function FoodList() {
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [cart, setCart] = useState([]);
-
   const [texto, setTexto] = useState("");
+  const [tableNumber, setTableNumber] = useState(3);
 
   const handleChange = (event) => {
     setTexto(event.target.value);
@@ -75,7 +75,27 @@ export default function FoodList() {
     fetchData();
   }, []);
 
+  const createJsonCart = (filteredCart, paidUsd, subtotal) => {
+    const jsonCart = {
+      foods: [],
+      table: tableNumber,
+      paidUsd: paidUsd,
+      subtotal: subtotal,
+      payment: true,
+    };
+
+    for (let i = 0; i < filteredCart.length; i++) {
+      if (filteredCart[i] != null) {
+        jsonCart.foods.push(filteredCart[i]);
+      }
+    }
+
+    console.log(jsonCart);
+    alert("Orden enviada");
+  };
+
   // Se genera carrito que solo incluye los items con cantidad mayor a 0 pero en la posicion correcta con respecto al arreglo quantity
+  //const filteredCartUI = cart.filter((item, index) => quantities[index] > 0);
   const filteredCart = new Array(foods.length).fill(null);
   for (let i = 0; i < foods.length; i++) {
     if (quantities[i] > 0) {
@@ -196,8 +216,6 @@ export default function FoodList() {
 
             <div className="p-3 flex justify-center">
               <form action="">
-                {/* 
-                        <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
                 <label className="font-normal text-gray-700 dark:text-gray-400 p-1">
                   Notas de la orden <br /> <br />
                 </label>
@@ -221,6 +239,15 @@ export default function FoodList() {
             Subtotal de la orden: ${subtotal} <br /> <br /> Taxes: ${taxes}{" "}
             <br /> <br /> Total: ${total}
           </h6>
+          <button
+            className="btn text-white bg-gray-800 p-3 rounded-3xl"
+            onClick={() => createJsonCart(filteredCart, total, subtotal)}
+          >
+            <h1>Checkout</h1>
+          </button>
+          <h4 className="mb-2 text-center text-xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+            Tu mesa es la número {tableNumber}
+          </h4>
         </div>
       </div>
     </>
