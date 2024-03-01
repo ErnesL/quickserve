@@ -22,6 +22,10 @@ const FoodSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    type: {
+      type: String,
+      enum: ["entries", "food", "drink", "dessert"],
+    },
   },
   { timestamps: true }
 );
