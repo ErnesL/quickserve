@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Card from "@/components/Card";
-import { CircularProgress } from "@material-ui/core";
 
 const getFoods = async () => {
   try {
@@ -91,7 +90,6 @@ export default function FoodList() {
 
   return (
     <>
-      import Card from "./Card";
 
       <div className="flex flex-wrap p-2 justify-center pt-20">
         {Array.isArray(foods) ? (
