@@ -2,6 +2,7 @@ import connectDB from "@/lib/dbConnect";
 import Food from "@/models/Food";
 import { NextResponse } from "next/server";
 
+
 export async function POST(request) {
   const { title, description, ingredients, price, processed } =
     await request.json();
