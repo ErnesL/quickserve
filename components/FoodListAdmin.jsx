@@ -23,27 +23,34 @@ export default async function FoodListAdmin() {
 
   return (
     <>
-      <Link href={`/admin/addFood`}>
-        <div className="bg-slate-500 pt-20">añadir nueva comida</div>
-      </Link>
-      {foods.map((t) => (
-        <div
-          key={t._id}
-          className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
-        >
-          <div>
-            <h2 className="font-bold text-2xl">{t.title}</h2>
-            <div>{t.description}</div>
-          </div>
+      <div className="flex justify-center">
+        <h1 className="text-xl max-w-[20%] p-3 m-5 rounded-lg bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white">
+          <Link href={`/admin/addFood`} className="max-w-[20%]">
+            Añadir Comida
+          </Link>
+        </h1>
+      </div>
 
-          <div className="flex gap-2">
-            <RemoveBtn id={t._id} />
-            <Link href={`/admin/editFood/${t._id}`}>
-              <HiPencilAlt size={24} />
-            </Link>
+      <div className="flex flex-wrap p-1 justify-center ">
+        {foods.map((t) => (
+          <div
+            key={t._id}
+            className="p-4 border m-3 flex justify-between min-w-[25%] min-h-[15vh] border-gray-900 rounded-lg bg-gray-600 hover:bg-gray-500"
+          >
+            <div className="flex flex-col justify-center">
+              <h2 className="font-bold text-2xl text-white">{t.title}</h2>
+              <div className="text-white">{t.description}</div>
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <RemoveBtn id={t._id} />
+              <Link href={`/admin/editFood/${t._id}`}>
+                <HiPencilAlt size={24} />
+              </Link>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </>
   );
 }
