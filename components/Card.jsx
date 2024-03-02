@@ -1,17 +1,8 @@
 "use client";
 
-import Link from "next/link";
 
-export default function Card({
-  image,
-  title,
-  ingredients,
-  description,
-  price,
-  quantity,
-  onDecrement,
-  onIncrement,
-}) {
+
+export default function Card({image, title, ingredients, description, price, quantity, onDecrement,onIncrement}) {
   return (
     <>
       <div className="p-3">
