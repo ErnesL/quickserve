@@ -2,6 +2,6 @@ import Cart from "@/components/Cart";
 
 export default function cart() {
   return (
-    <Cart />
+    <h2>CARRITO</h2>
   );
 }
