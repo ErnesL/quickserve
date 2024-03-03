@@ -9,7 +9,11 @@ export async function PUT(request, { params }) {
     newDescription: description,
     newIngredients: ingredients,
     newPrice: price,
+    newQuantity: quantity,
+    newTotal: total,
     newProcessed: processed,
+    newType: type,
+    newRating: rating,
   } = await request.json();
   await connectDB();
   await Food.findByIdAndUpdate(id, {
@@ -17,7 +21,11 @@ export async function PUT(request, { params }) {
     description,
     ingredients,
     price,
+    quantity,
+    total,
     processed,
+    type,
+    rating,
   });
   return NextResponse.json({ message: "Food updated" }, { status: 200 });
 }

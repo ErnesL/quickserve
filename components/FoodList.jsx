@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import CardPreview from "@/components/CardPreview";
 import Card from "@/components/Card";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -21,6 +22,39 @@ const getFoods = async () => {
     return [];
   }
 };
+
+const foodObjects = [];
+
+async function writeCartToMongoDB(filteredCart) {
+  filteredCart
+    .filter((item) => item !== null)
+    .map((item) => {
+      foodObjects.push({
+        title: item.title,
+        description: item.description,
+        ingredients: item.ingredients,
+        price: item.price,
+        quantity: item.quantity,
+        total: item.price * item.quantity,
+        processed: false,
+      });
+    });
+  //#TODO: 001
+  try {
+    const response = await fetch("http://localhost:3000/api/cart", {
+      method: "POST",
+      body: JSON.stringify(foodObjects),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to write cart to MongoDB");
+    }
+
+    console.log("Cart written to MongoDB successfully");
+  } catch (error) {
+    console.error("Error writing cart to MongoDB: ", error);
+  }
+}
 
 export default function FoodList() {
   const [state, setState] = React.useState({
@@ -139,8 +173,6 @@ export default function FoodList() {
 
   const { subtotal, taxes, total } = calculateInvoice(filteredCart);
 
-  //Es necesario declarar una funcion let foodCart en la cual se almacene el carrito de compras
-
   return (
     <>
       {/* drawer */}
@@ -163,52 +195,19 @@ export default function FoodList() {
                   </h4>
                   <ul>
                     {/* Se mapea el arreglo filteredCart de forma que solo seleccione las comidas y no los nulls. Si es null, entonces no muestra nada */}
-                    {filteredCart.map((item, index) =>
-                      item != null ? (
+                    {filteredCart.map((food, index) =>
+                      food != null ? (
                         <li key={index}>
-                          <div className="flex justify-center p-6 m-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                            <div className="p-6 min-w-[40%] max-w-[40%] bg-green-50">
-                              PHOTO
-                            </div>
-
-                            <div className="p-6 min-w-[50%] max-w-[50%]">
-                              <div>
-                                <h4 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
-                                  {item.title}
-                                </h4>
-                              </div>
-
-                              <div>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                                  Cantidad: {item.quantity} <br />
-                                </p>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                                  Item Price: ${item.price} <br />
-                                </p>
-                                <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                                  Subttl: ${item.price * item.quantity}
-                                </p>
-                              </div>
-
-                              <div className="flex self-center justify-center space-x-4 items-center p-4">
-                                <button
-                                  className="btn bg-white p-3 rounded-3xl"
-                                  onClick={() => decrementQuantity(index)}
-                                >
-                                  <h1>-</h1>
-                                </button>
-
-                                <p className="text-white">{item.quantity}</p>
-
-                                <button
-                                  className="btn bg-white p-3 rounded-3xl"
-                                  onClick={() => incrementQuantity(index)}
-                                >
-                                  <h1>+</h1>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
+                          <CardPreview
+                            image={<h1>IMAGEN</h1>}
+                            title={food.title}
+                            ingredients={food.ingredients}
+                            description={food.description}
+                            price={food.price}
+                            quantity={quantities[index]}
+                            onDecrement={() => decrementQuantity(index)}
+                            onIncrement={() => incrementQuantity(index)}
+                          />
                         </li>
                       ) : null
                     )}
@@ -233,7 +232,6 @@ export default function FoodList() {
                     Factura
                   </h4>
                   <br />
-
                   <div className="p-2 ml-5">
                     <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
                       Subtotal de la orden: ${subtotal} <br />
@@ -249,6 +247,17 @@ export default function FoodList() {
                       Total: ${total}
                     </h6>
                   </div>
+                  //#TODO: 004
+                  <button
+                    className="btn btn-outline btn-success"
+                    onClick={() => {
+                      {
+                        writeCartToMongoDB(filteredCart);
+                      }
+                    }}
+                  >
+                    Pagar
+                  </button>
                 </div>
               </div>
             </Drawer>
