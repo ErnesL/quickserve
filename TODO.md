@@ -20,17 +20,27 @@
 
 - Boton en el preview para pedir ayuda de un agente de customer service. Seria chevere que al momento de hacer click, se imprime una noticia de que 'un agente autorizado esta en camino a resolver cualquier duda que tengas'
 
+- Usar `https://daisyui.com/components/alert/` para hacer alertas que se vean bonitas
+
 ### BACKEND
 
 ###### Tema de la FOTO @ROY
-
-- `001` Es necesario colocar aqui un formatter para que todos los elementos de `food` queden almacenado en foodObjects para después colocar en un {`foodObjects`, `tableOrder`} y enviarlo a la base de datos.
 
 - Handling para vista protegida. Para este sprint seria bueno que nada mas colocando /admin pueda ingresar. Para el ultimo sprint vamos a utilizar un sistema CRUD especifico para los usuarios.
 
 - Falta colocar una ruta PUT que modifique el valor de `processed` a true una vez que el chef lo marque.
 
 - Falta colocar el handling para las imagenes.
+
+# DONE
+
+Coloquen aqui las tareas que van completando para revisar que esten bien
+
+- Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.
+
+# NOT DOABLE ATM
+
+- `001` Es necesario colocar aqui un formatter para que todos los elementos de `food` queden almacenado en foodObjects para después colocar en un {`foodObjects`, `tableOrder`} y enviarlo a la base de datos.
 
 ### ESTADISTICAS
 
@@ -41,9 +51,3 @@
 - Los platos más y menos vendidos deben mostrarse de manera clara y comprensible, con la cantidad de ventas correspondiente a cada plato.
 
 - El sistema debe calcular automáticamente y actualizar la lista de los platos más y menos vendidos en base a los datos de ventas registrados.
-
-# DONE
-
-Coloquen aqui las tareas que van completando para revisar que esten bien
-
-- Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.
