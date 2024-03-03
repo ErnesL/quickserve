@@ -37,6 +37,9 @@ const CartSchema = new mongoose.Schema(
     orderId: {
       type: Number,
     },
+    clientComments: {
+      type: String,
+    },
   },
 
   { timestamps: true }
