@@ -197,6 +197,7 @@ export default function FoodList() {
                       Total: ${total}
                     </h6>
                   </div>
+                  <button class="btn btn-outline btn-success">Pagar</button>
                 </div>
               </div>
             </Drawer>
