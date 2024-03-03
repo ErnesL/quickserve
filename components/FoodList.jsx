@@ -177,30 +177,141 @@ export default function FoodList() {
       </div>
 
       {/* Tarjetas de comidas */}
-
+      <br />
+      <hr className="border-t-4 border-black" />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">ENTRADAS</h1>
+      <br />
+      
       <div className="flex flex-wrap p-2 justify-center pt-5">
-        {Array.isArray(foods) ? (
-          foods.map((food, index) => (
-            <div
-              className="p-3"
-              key={food.id || index}
-            >
-              <Card
-                image={<h1>IMAGEN</h1>}
-                title={food.title}
-                ingredients={food.ingredients}
-                description={food.description}
-                price={food.price}
-                quantity={quantities[index]}
-                onDecrement={() => decrementQuantity(index)}
-                onIncrement={() => incrementQuantity(index)}
-              />
-            </div>
-          ))
+      {Array.isArray(foods) ? (
+          foods.map((food, index) => {
+            if (food.type === 'entries') {
+              return (
+                <div
+                  className="p-3"
+                  key={food.id || index}
+                >
+                  <Card
+                    image={<h1>IMAGEN</h1>}
+                    title={food.title}
+                    ingredients={food.ingredients}
+                    description={food.description}
+                    price={food.price}
+                    quantity={quantities[index]}
+                    onDecrement={() => decrementQuantity(index)}
+                    onIncrement={() => incrementQuantity(index)}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })
         ) : (
           <p>Cargando alimentos...</p>
         )}
       </div>
+      
+      <hr className="border-t-4 border-black" />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">COMIDAS</h1>
+      <br />
+
+      <div className="flex flex-wrap p-2 justify-center pt-5">
+      {Array.isArray(foods) ? (
+          foods.map((food, index) => {
+            if (food.type === 'food') {
+              return (
+                <div
+                  className="p-3"
+                  key={food.id || index}
+                >
+                  <Card
+                    image={<h1>IMAGEN</h1>}
+                    title={food.title}
+                    ingredients={food.ingredients}
+                    description={food.description}
+                    price={food.price}
+                    quantity={quantities[index]}
+                    onDecrement={() => decrementQuantity(index)}
+                    onIncrement={() => incrementQuantity(index)}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <p>Cargando alimentos...</p>
+        )}
+      </div>
+      
+      <hr className="border-t-4 border-black" />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">BEBIDAS</h1>
+      <br />
+      <div className="flex flex-wrap p-2 justify-center pt-5">
+        {Array.isArray(foods) ? (
+          foods.map((food, index) => {
+            if (food.type === 'drink') {
+              return (
+                <div
+                  className="p-3"
+                  key={food.id || index}
+                >
+                  <Card
+                    image={<h1>IMAGEN</h1>}
+                    title={food.title}
+                    ingredients={food.ingredients}
+                    description={food.description}
+                    price={food.price}
+                    quantity={quantities[index]}
+                    onDecrement={() => decrementQuantity(index)}
+                    onIncrement={() => incrementQuantity(index)}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <p>Cargando alimentos...</p>
+        )}
+      </div>
+      
+      <hr className="border-t-4 border-black" />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">POSTRES</h1>
+      <br />
+      <div className="flex flex-wrap p-2 justify-center pt-5">
+      {Array.isArray(foods) ? (
+          foods.map((food, index) => {
+            if (food.type === 'dessert') {
+              return (
+                <div
+                  className="p-3"
+                  key={food.id || index}
+                >
+                  <Card
+                    image={<h1>IMAGEN</h1>}
+                    title={food.title}
+                    ingredients={food.ingredients}
+                    description={food.description}
+                    price={food.price}
+                    quantity={quantities[index]}
+                    onDecrement={() => decrementQuantity(index)}
+                    onIncrement={() => incrementQuantity(index)}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <p>Cargando alimentos...</p>
+        )}
+      </div>
+
       <br />
       <hr className="border-t-4 border-black" />
       <br />

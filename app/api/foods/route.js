@@ -3,7 +3,7 @@ import Food from "@/models/Food";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const { title, description, ingredients, price, processed } =
+  const { title, type, description, total,rating, quantity, ingredients, price, processed } =
     await request.json();
   await connectDB();
   await Food.create({

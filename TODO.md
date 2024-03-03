@@ -10,8 +10,6 @@
 
 - `004` Agregar un formulario para que el cliente pueda escribir cualquier comentario relacionado a su orden y este puede ser accedido como `cart.clientComments`
 
-- Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.
-
 - Es necesario filtrar el menu por `["entries", "food", "drink", "dessert"]` utilizando el `navbar`.
 
 - Como dueño del local, quiero una interfaz de agregar y modificar comidas más intuitiva para mejorar el proceso de gestión del menú.
@@ -47,3 +45,5 @@
 # DONE
 
 Coloquen aqui las tareas que van completando para revisar que esten bien
+
+- Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.

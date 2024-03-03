@@ -21,7 +21,12 @@ export default function CustomDrawer({
 }) {
   return (
     <React.Fragment key={anchor}>
-      <Button onClick={toggleDrawer(anchor, true)}>Preview del carrito</Button>
+      <Button
+        className="hover:bg-white hover:text-black bg-black p-3 pt-4 text-white rounded-lg font-bold"
+        onClick={toggleDrawer(anchor, true)}
+      >
+        Preview del carrito
+      </Button>
       <Drawer
         anchor={anchor}
         open={state[anchor]}
@@ -45,7 +50,9 @@ export default function CustomDrawer({
                       description={food.description}
                       price={food.price}
                       quantity={quantities[index]}
-                      onDecrement={() => {decrementQuantity(index)}}
+                      onDecrement={() => {
+                        decrementQuantity(index);
+                      }}
                       onIncrement={() => incrementQuantity(index)}
                     />
                   </li>
