@@ -6,7 +6,17 @@ export async function POST(request) {
   const { title, description, ingredients, price, processed } =
     await request.json();
   await connectDB();
-  await Food.create({ title, description, ingredients, price, processed });
+  await Food.create({
+    title,
+    description,
+    ingredients,
+    price,
+    quantity,
+    total,
+    processed,
+    type,
+    rating,
+  });
   return NextResponse.json({ message: "Food created" }, { status: 201 });
 }
 

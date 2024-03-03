@@ -39,7 +39,7 @@ async function writeCartToMongoDB(filteredCart) {
         processed: false,
       });
     });
-  //#TODO: Es necesario colocar aqui un formatter para que todos los elementos de food queden almacenado en foodObjects para después colocar en un {foodObjects, tableOrder} y enviarlo a la base de datos
+  //#TODO: 001
   try {
     const response = await fetch("http://localhost:3000/api/cart", {
       method: "POST",
@@ -90,7 +90,6 @@ export default function FoodList() {
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [cart, setCart] = useState([]);
-
   const [texto, setTexto] = useState("");
 
   const handleChange = (event) => {
@@ -153,8 +152,6 @@ export default function FoodList() {
 
   const { subtotal, taxes, total } = calculateInvoice(filteredCart);
 
-  //Es necesario declarar una funcion let foodCart en la cual se almacene el carrito de compras
-
   return (
     <>
       {/* drawer */}
@@ -214,7 +211,6 @@ export default function FoodList() {
                     Factura
                   </h4>
                   <br />
-
                   <div className="p-2 ml-5">
                     <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
                       Subtotal de la orden: ${subtotal} <br />
@@ -230,7 +226,16 @@ export default function FoodList() {
                       Total: ${total}
                     </h6>
                   </div>
-                  <button class="btn btn-outline btn-success">Pagar</button>
+                  <button
+                    className="btn btn-outline btn-success"
+                    onClick={() => {
+                      {
+                        writeCartToMongoDB(filteredCart);
+                      }
+                    }}
+                  >
+                    Pagar
+                  </button>
                 </div>
               </div>
             </Drawer>
