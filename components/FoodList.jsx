@@ -19,6 +19,39 @@ const getFoods = async () => {
   }
 };
 
+const foodObjects = [];
+
+async function writeCartToMongoDB(filteredCart) {
+  filteredCart
+    .filter((item) => item !== null)
+    .map((item) => {
+      foodObjects.push({
+        title: item.title,
+        description: item.description,
+        ingredients: item.ingredients,
+        price: item.price,
+        quantity: item.quantity,
+        total: item.price * item.quantity,
+        processed: false,
+      });
+    });
+  //#TODO: Es necesario colocar aqui un formatter para que todos los elementos de food queden almacenado en foodObjects para después colocar en un {foodObjects, tableOrder} y enviarlo a la base de datos
+  try {
+    const response = await fetch("http://localhost:3000/api/cart", {
+      method: "POST",
+      body: JSON.stringify(foodObjects),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to write cart to MongoDB");
+    }
+
+    console.log("Cart written to MongoDB successfully");
+  } catch (error) {
+    console.error("Error writing cart to MongoDB: ", error);
+  }
+}
+
 export default function FoodList() {
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
@@ -195,6 +228,14 @@ export default function FoodList() {
             Subtotal de la orden: ${subtotal} <br /> <br /> Taxes: ${taxes}{" "}
             <br /> <br /> Total: ${total}
           </h6>
+          <div className="flex self-center justify-center space-x-4 items-center p-4">
+            <button
+              className="btn bg-white p-3 rounded-3xl"
+              onClick={() => writeCartToMongoDB(filteredCart)}
+            >
+              <h1>Pagar</h1>
+            </button>
+          </div>
         </div>
       </div>
     </>

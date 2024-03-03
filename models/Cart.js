@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const FoodSchema = new mongoose.Schema(
+const CartSchema = new mongoose.Schema(
   {
     title: {
       type: String,
@@ -34,8 +34,12 @@ const FoodSchema = new mongoose.Schema(
       type: String,
       enum: ["entries", "food", "drink", "dessert"],
     },
+    orderId: {
+      type: Number,
+    },
   },
+
   { timestamps: true }
 );
 
-export default mongoose.models.Food || mongoose.model("Food", FoodSchema);
+export default mongoose.models.Cart || mongoose.model("Cart", CartSchema);
