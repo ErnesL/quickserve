@@ -43,3 +43,7 @@
 - Los platos más y menos vendidos deben mostrarse de manera clara y comprensible, con la cantidad de ventas correspondiente a cada plato.
 
 - El sistema debe calcular automáticamente y actualizar la lista de los platos más y menos vendidos en base a los datos de ventas registrados.
+
+# DONE
+
+Coloquen aqui las tareas que van completando para revisar que esten bien
