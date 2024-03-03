@@ -10,18 +10,18 @@ export default function NavBar() {
   }
 
   return (
-    <nav className="w-full h-100 bg-white border-gray-200 dark:bg-gray-900">
+    <nav className="w-full h-100 bg-black border-gray-200 dark:bg-black-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           href={"/"}
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
           <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            QuickServe
+             NoBU  | Asian Food
           </span>
         </Link>
         <div className="w-full md:block md:w-auto" id="navbar-default">
-          <ul className="font-medium items-center flex justify-end p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium items-center flex justify-end p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse">
             <li>
               <a
                 href="#"

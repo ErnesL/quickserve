@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function Card({
+export default function CardPreview({
   image,
   title,
   description,
@@ -16,13 +16,12 @@ export default function Card({
   ) : image;
 
   return (
-    <div className="card card-compact w-96 bg-black shadow-xls">
+    <div className="card card-side w-96 bg-black shadow-xls">
       <figure>
         <img src={defaultImage} alt={title || "Plate"} />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-white">{title || "Title"}</h2>
-        <p className="text-white">{description || "Description"}</p>
         <p className="text-white">${price || 0}</p>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} className="card-actions">
           <button className="btn btn-circle text-white" onClick={onDecrement}>

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import CardPreview from "@/components/CardPreview";
 import Card from "@/components/Card";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -52,7 +53,7 @@ export default function FoodList() {
       </ul>
     </Box>
   );
-  
+
   const [foods, setFoods] = useState([]);
   const [quantities, setQuantities] = useState([]);
   const [cart, setCart] = useState([]);
@@ -123,118 +124,85 @@ export default function FoodList() {
 
   return (
     <>
-            {/* drawer */}
-            <div className="flex justify-end mr-[10vw] mt-[5vh]">
-          {["right"].map((anchor) => (
-            <React.Fragment key={anchor}>
-              <Button onClick={toggleDrawer(anchor, true)}>
-                Preview del carrito
-              </Button>
-              <Drawer
-                anchor={anchor}
-                open={state[anchor]}
-                onClose={toggleDrawer(anchor, false)}
-              >
-                {list(anchor)}
-                <div className="flex">
-                  <div className="min-w-[30vw] max-w-[50vw] grid grid-cols-1 p-3">
-                    <h4 className="mb-2 justify-self-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
-                      Carrito
-                    </h4>
-                    <ul>
-                      {/* Se mapea el arreglo filteredCart de forma que solo seleccione las comidas y no los nulls. Si es null, entonces no muestra nada */}
-                      {filteredCart.map((item, index) =>
-                        item != null ? (
-                          <li key={index}>
-                            <div className="flex justify-center p-6 m-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                              <div className="p-6 min-w-[40%] max-w-[40%] bg-green-50">
-                                PHOTO
-                              </div>
-
-                              <div className="p-6 min-w-[50%] max-w-[50%]">
-                                <div>
-                                  <h4 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white p-2">
-                                    {item.title}
-                                  </h4>
-                                </div>
-
-                                <div>
-                                  <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                                    Cantidad: {item.quantity} <br />
-                                  </p>
-                                  <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                                    Item Price: ${item.price} <br />
-                                  </p>
-                                  <p className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                                    Subttl: ${item.price * item.quantity}
-                                  </p>
-                                </div>
-
-                                <div className="flex self-center justify-center space-x-4 items-center p-4">
-                                  <button
-                                    className="btn bg-white p-3 rounded-3xl"
-                                    onClick={() => decrementQuantity(index)}
-                                  >
-                                    <h1>-</h1>
-                                  </button>
-
-                                  <p className="text-white">{item.quantity}</p>
-
-                                  <button
-                                    className="btn bg-white p-3 rounded-3xl"
-                                    onClick={() => incrementQuantity(index)}
-                                  >
-                                    <h1>+</h1>
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </li>
-                        ) : null
-                      )}
-
-                      <div className="p-3 flex justify-center">
-                        <form action="">
-                          {/* 
-                        <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
-                          <label className="font-normal text-gray-700 dark:text-gray-400 p-1">
-                            Notas de la orden <br /> <br />
-                          </label>
-                          <input
-                            className="border-b border-black"
-                            type="text"
-                            value={texto}
-                            onChange={handleChange}
+      {/* drawer */}
+      <div className="flex justify-end mr-[10vw] mt-[5vh]">
+        {["right"].map((anchor) => (
+          <React.Fragment key={anchor}>
+            <Button onClick={toggleDrawer(anchor, true)}>
+              Preview del carrito
+            </Button>
+            <Drawer
+              anchor={anchor}
+              open={state[anchor]}
+              onClose={toggleDrawer(anchor, false)}
+            >
+              {list(anchor)}
+              <div className="flex">
+                <div className="min-w-[30vw] max-w-[50vw] grid grid-cols-1 p-3">
+                  <h4 className="mb-2 justify-self-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+                    Carrito
+                  </h4>
+                  <ul>
+                    {/* Se mapea el arreglo filteredCart de forma que solo seleccione las comidas y no los nulls. Si es null, entonces no muestra nada */}
+                    {filteredCart.map((food, index) =>
+                      food != null ? (
+                        <li key={index}>
+                          <CardPreview
+                            image={<h1>IMAGEN</h1>}
+                            title={food.title}
+                            ingredients={food.ingredients}
+                            description={food.description}
+                            price={food.price}
+                            quantity={quantities[index]}
+                            onDecrement={() => decrementQuantity(index)}
+                            onIncrement={() => incrementQuantity(index)}
                           />
-                        </form>
-                      </div>
-                    </ul>
-                    <h4 className="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
-                      Factura
-                    </h4>
-                    <br />
+                        </li>
+                      ) : null
+                    )}
 
-                    <div className="p-2 ml-5">
-                      <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-                        Subtotal de la orden: ${subtotal} <br />
-                      </h6>
+                    <div className="p-3 flex justify-center">
+                      <form action="">
+                        {/* 
+                        <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
+                        <label className="font-normal text-gray-700 dark:text-gray-400 p-1">
+                          Notas de la orden <br /> <br />
+                        </label>
+                        <input
+                          className="border-b border-black"
+                          type="text"
+                          value={texto}
+                          onChange={handleChange}
+                        />
+                      </form>
                     </div>
-                    <div className="p-2 ml-5">
-                      <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-                        Taxes: ${taxes} <br />
-                      </h6>
-                    </div>
-                    <div className="p-2 ml-5">
-                      <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-                        Total: ${total}
-                      </h6>
-                    </div>
+                  </ul>
+                  <h4 className="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+                    Factura
+                  </h4>
+                  <br />
+
+                  <div className="p-2 ml-5">
+                    <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
+                      Subtotal de la orden: ${subtotal} <br />
+                    </h6>
+                  </div>
+                  <div className="p-2 ml-5">
+                    <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
+                      Taxes: ${taxes} <br />
+                    </h6>
+                  </div>
+                  <div className="p-2 ml-5">
+                    <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
+                      Total: ${total}
+                    </h6>
                   </div>
                 </div>
-              </Drawer>
-            </React.Fragment>
-          ))}
-        </div>
+              </div>
+            </Drawer>
+          </React.Fragment>
+        ))}
+      </div>
 
 
       {/* Tarjetas de comidas */}
