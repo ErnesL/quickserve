@@ -22,7 +22,7 @@ export default function CustomDrawer({
   return (
     <React.Fragment key={anchor}>
       <Button
-        className="hover:bg-white hover:text-black bg-blue-900 p-3 pt-4 text-white rounded-lg font-bold"
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
         onClick={() => {
           alert("Un personal de asistencia va en camino a su mesa");
         }}
@@ -30,10 +30,10 @@ export default function CustomDrawer({
         Ayuda
       </Button>
       <Button
-        className="hover:bg-white hover:text-black bg-gray-600 p-3 pt-4 text-white rounded-lg font-bold"
+        className="hover:bg-gray-400 hover:text-black bg-gray-100 p-3 pt-4 text-black rounded-lg font-bold"
         onClick={toggleDrawer(anchor, true)}
       >
-        Orden
+        Ordenar
       </Button>
 
       <Drawer
@@ -45,7 +45,7 @@ export default function CustomDrawer({
         <div className="flex">
           <div className="min-w-[30vw] max-w-[40vw] grid grid-cols-1 p-3">
             <h4 className="mb-2 justify-self-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
-              Carrito
+              Orden
             </h4>
             <ul>
               {/* Se mapea el arreglo filteredCart de forma que solo seleccione las comidas y no los nulls. Si es null, entonces no muestra nada */}
