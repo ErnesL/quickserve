@@ -13,6 +13,7 @@ export default function addFoodForm() {
   const [strImage, setStrImage] = useState("");
   const [image, setImage] = useState("");
   const [load, setLoad] = useState(false);
+  const [type, setType] = useState("");
 
   const router = useRouter();
 
@@ -44,7 +45,10 @@ export default function addFoodForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (load) {
-      if (!title || !description || !ingredients || !price) {
+      //imageToBase64(image).then(async (dataUrl) => {
+      //console.log(dataUrl); // Aquí está tu imagen en base64
+      //setStrImage(dataUrl);
+      if (!title || !description || !ingredients || !price || !type) {
         alert("Todos los campos deben haber sido llenados.");
         return;
       }
@@ -53,102 +57,34 @@ export default function addFoodForm() {
         console.log(dataUrl); // Aquí está tu imagen en base64
         setStrImage(dataUrl);
 
-        try {
-          alert(dataUrl)
-          const res = await fetch("http://localhost:3000/api/foods", {
-            method: "POST",
-            headers: {
-              "Content-type": "application/json",
-            },
-            body: JSON.stringify({
-              title,
-              description,
-              ingredients,
-              price,
-              strImage: dataUrl,
-            }),
-          });
-
-          if (res.ok) {
-            router.push("/");
-          } else {
-            throw new Error("Hubo un error al añadir la comida");
-          }
-        } catch (error) {
-          console.log(error);
-        }
-      });
+    if (type!=="entries" && type!=="food" && type!=="dessert" && type!=="drink") {
+      alert("El tipo de comida debe ser: entries, food, dessert, drink.");
+      return;
     }
-  };
 
-  //Código de js para el manejo de eventos de la imagen
-  const fileInput = useRef(null);
-  const dropZone = useRef(null);
-  const img = useRef(null);
-  const text = useRef(null);
+    try {
+      const res = await fetch("http://localhost:3000/api/foods", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({ title, description, ingredients, price, type}),
+      });
 
-  const uploadImage = (file) => {
-    const fileReader = new FileReader();
-
-    const loadHandler = (e) => {
-      img.current.setAttribute("src", e.target.result);
-      text.current.classList.add("hidden");
-      fileReader.removeEventListener("load", loadHandler);
-    };
-    fileReader.onload = (e) => {
-      setLoad(true);
-      setImage(file);
-    };
-    fileReader.addEventListener("load", loadHandler);
-    fileReader.readAsDataURL(file);
-  };
-
-  useEffect(() => {
-    const dz = dropZone.current;
-    const fi = fileInput.current;
-
-    const clickHandler = () => fi.click();
-    const dragoverHandler = (e) => {
-      e.preventDefault();
-      dz.classList.add("form-file__result--active");
-    };
-    const dragleaveHandler = (e) => {
-      e.preventDefault();
-      dz.classList.remove("form-file__result--active");
-    };
-    const dropHandler = (e) => {
-      e.preventDefault();
-      setLoad(false);
-      fi.files = e.dataTransfer.files;
-      const file = fi.files[0];
-      uploadImage(file);
-    };
-    const changeHandler = (e) => {
-      setLoad(false);
-      const file = e.target.files[0];
-      uploadImage(file);
-    };
-
-    dz.addEventListener("click", clickHandler);
-    dz.addEventListener("dragover", dragoverHandler);
-    dz.addEventListener("dragleave", dragleaveHandler);
-    dz.addEventListener("drop", dropHandler);
-    fi.addEventListener("change", changeHandler);
-
-    return () => {
-      dz.removeEventListener("click", clickHandler);
-      dz.removeEventListener("dragover", dragoverHandler);
-      dz.removeEventListener("dragleave", dragleaveHandler);
-      dz.removeEventListener("drop", dropHandler);
-      fi.removeEventListener("change", changeHandler);
-    };
-  }, []);
+      if (res.ok) {
+        router.push("/");
+      } else {
+        throw new Error("Hubo un error al añadir la comida");
+      }
+    } catch (error) {
+      console.log(error);
+    }
 
   return (
     <>
       <div className="p-40">
         <div className="p-5">
-          <h1 className="text-center text-2xl font-semibold text-black">
+          <h1 className="text-center text-2xl font-semibold text-blue-500">
             Agregando Comida
           </h1>
         </div>
@@ -173,6 +109,31 @@ export default function addFoodForm() {
                   type="text"
                   placeholder="Topic Title"
                 />
+              </div>
+            </div>
+
+            <div className="md:flex md:items-center mb-6">
+              <div className="md:w-1/3">
+                <label
+                  className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                  htmlFor="type"
+                >
+                  Tipo:
+                </label>
+              </div>
+
+              <div className="md:w-2/3">
+                <select
+                  className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-900"
+                  id="type"
+                  onChange={(e) => setType(e.target.value)}
+                  value={type}
+                >
+                  <option value="entries">Entries</option>
+                  <option value="food">Food</option>
+                  <option value="dessert">Dessert</option>
+                  <option value="drink">Drink</option>
+                </select>
               </div>
             </div>
 

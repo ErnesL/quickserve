@@ -10,8 +10,6 @@
 
 - `004` Agregar un formulario para que el cliente pueda escribir cualquier comentario relacionado a su orden y este puede ser accedido como `cart.clientComments`
 
-- Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.
-
 - Es necesario filtrar el menu por `["entries", "food", "drink", "dessert"]` utilizando el `navbar`.
 
 - Como dueño del local, quiero una interfaz de agregar y modificar comidas más intuitiva para mejorar el proceso de gestión del menú.
@@ -22,17 +20,23 @@
 
 - Boton en el preview para pedir ayuda de un agente de customer service. Seria chevere que al momento de hacer click, se imprime una noticia de que 'un agente autorizado esta en camino a resolver cualquier duda que tengas'
 
+- Usar `https://daisyui.com/components/alert/` para hacer alertas que se vean bonitas
+
 ### BACKEND
-
-###### Tema de la FOTO @ROY
-
-- `001` Es necesario colocar aqui un formatter para que todos los elementos de `food` queden almacenado en foodObjects para después colocar en un {`foodObjects`, `tableOrder`} y enviarlo a la base de datos.
 
 - Handling para vista protegida. Para este sprint seria bueno que nada mas colocando /admin pueda ingresar. Para el ultimo sprint vamos a utilizar un sistema CRUD especifico para los usuarios.
 
+- Falta colocar el handling para las imagenes.
+
+# DONE
+
+- Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.
+
 - Falta colocar una ruta PUT que modifique el valor de `processed` a true una vez que el chef lo marque.
 
-- Falta colocar el handling para las imagenes.
+# NOT DOABLE ATM
+
+- `001` Es necesario colocar aqui un formatter para que todos los elementos de `food` queden almacenado en foodObjects para después colocar en un {`foodObjects`, `tableOrder`} y enviarlo a la base de datos.
 
 ### ESTADISTICAS
 

@@ -16,11 +16,11 @@ export default function CardPreview({
   ) : image;
 
   return (
-    <div className="card card-side w-96 bg-black shadow-xls">
-      <figure>
-        <img src={defaultImage} alt={title || "Plate"} />
+    <div className="card card-side w-96 bg-black shadow-xls min-w-[30vw]">
+      <figure className="max-w-[10vw] min-w-[10vw]">
+        <img src={defaultImage} alt={title || "Plate"}/>
       </figure>
-      <div className="card-body">
+      <div className="card-body min-w-[20vw]">
         <h2 className="card-title text-white">{title || "Title"}</h2>
         <p className="text-white">${price || 0}</p>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }} className="card-actions">

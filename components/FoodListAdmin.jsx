@@ -1,7 +1,7 @@
 import Link from "next/link";
 import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
-
+import CardAdmin from "@/components/CardAdmin";
 const getFoodList = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/foods", {
@@ -25,16 +25,133 @@ export default async function FoodListAdmin() {
     <>
       <div className="flex justify-center">
         <h1 className="text-xl max-w-[20%] p-3 m-5 rounded-lg bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white">
-          <Link
-            href={`/admin/addFood`}
-            className="max-w-[20%]"
-          >
+          <Link href={`/admin/addFood`} className="max-w-[20%]">
             Añadir Comida
           </Link>
         </h1>
       </div>
-
+      
+      <br />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        ENTRADAS
+      </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+      <br />
       <div className="flex flex-wrap p-1 justify-center ">
+        
+        {foods.map((t) => {
+          if (t.type === "entries") {
+            return (
+              <div
+                key={t._id}
+                className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
+              >
+                <CardAdmin
+                  image={<h1>IMAGEN</h1>}
+                  title={t.title}
+                  ingredients={t.ingredients}
+                  description={t.description}
+                  price={t.price}
+                  id={t._id}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
+
+      <br />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        COMIDAS
+      </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+      <br />
+      <div className="flex flex-wrap p-1 justify-center ">
+      {foods.map((t) => {
+          if (t.type === "food") {
+            return (
+              <div
+                key={t._id}
+                className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
+              >
+                <CardAdmin
+                  image={<h1>IMAGEN</h1>}
+                  title={t.title}
+                  ingredients={t.ingredients}
+                  description={t.description}
+                  price={t.price}
+                  id={t._id}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
+
+      <br />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        POSTRES
+      </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+      <br />
+      <div className="flex flex-wrap p-1 justify-center ">
+      {foods.map((t) => {
+          if (t.type === "dessert") {
+            return (
+              <div
+                key={t._id}
+                className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
+              >
+                <CardAdmin
+                  image={<h1>IMAGEN</h1>}
+                  title={t.title}
+                  ingredients={t.ingredients}
+                  description={t.description}
+                  price={t.price}
+                  id={t._id}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
+
+      <br />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        BEBIDAS
+      </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+      <br />
+      <div className="flex flex-wrap p-1 justify-center ">
+      {foods.map((t) => {
+          if (t.type === "drink") {
+            return (
+              <div
+                key={t._id}
+                className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
+              >
+                <CardAdmin
+                  image={<h1>IMAGEN</h1>}
+                  title={t.title}
+                  ingredients={t.ingredients}
+                  description={t.description}
+                  price={t.price}
+                  id={t._id}
+                />
+              </div>
+            );
+          }
+        })}
+      </div>
+      {/* <div className="flex flex-wrap p-1 justify-center ">
         {foods.map((t) => (
           <div
             key={t._id}
@@ -53,7 +170,7 @@ export default async function FoodListAdmin() {
             </div>
           </div>
         ))}
-      </div>
+      </div> */}
     </>
   );
 }
