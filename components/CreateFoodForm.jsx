@@ -88,14 +88,17 @@ export default function addFoodForm() {
               </div>
 
               <div className="md:w-2/3">
-                <input
+                <select
                   className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-900"
                   id="type"
                   onChange={(e) => setType(e.target.value)}
                   value={type}
-                  type="text"
-                  placeholder="Ingresa el tipo de comida: entries, food, dessert, drink"
-                />
+                >
+                  <option value="entries">Entries</option>
+                  <option value="food">Food</option>
+                  <option value="dessert">Dessert</option>
+                  <option value="drink">Drink</option>
+                </select>
               </div>
             </div>
 

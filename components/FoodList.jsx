@@ -174,7 +174,7 @@ export default function FoodList() {
   return (
     <>
       {/* drawer */}
-      <div className="flex justify-end mr-[10vw] mt-28">
+      <div className="flex justify-between mr-[10vw] ml-[10vw] mt-[5vh]">
         {["right"].map((anchor) => (
           <Drawer
             key={anchor}
@@ -198,14 +198,12 @@ export default function FoodList() {
 
       {/* Tarjetas de comidas */}
       <br />
-      <hr className="border-t-4 border-black" />
       <br />
-      <h1
-        className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
-        id="entradas"
-      >
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
         ENTRADAS
       </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
 
       <div className="flex flex-wrap p-2 justify-center pt-5 z-0">
@@ -234,7 +232,6 @@ export default function FoodList() {
         )}
       </div>
 
-      <hr className="border-t-4 border-black" />
       <br />
       <h1
         className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
@@ -242,6 +239,8 @@ export default function FoodList() {
       >
         COMIDAS
       </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
 
       <div className="flex flex-wrap p-2 justify-center pt-5">
@@ -270,7 +269,6 @@ export default function FoodList() {
         )}
       </div>
 
-      <hr className="border-t-4 border-black" />
       <br />
       <h1
         className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
@@ -278,6 +276,8 @@ export default function FoodList() {
       >
         BEBIDAS
       </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
       <div className="flex flex-wrap p-2 justify-center pt-5">
         {Array.isArray(foods) ? (
@@ -305,7 +305,6 @@ export default function FoodList() {
         )}
       </div>
 
-      <hr className="border-t-4 border-black" />
       <br />
       <h1
         className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
@@ -313,6 +312,8 @@ export default function FoodList() {
       >
         POSTRES
       </h1>
+      <br />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
       <div className="flex flex-wrap p-2 justify-center pt-5">
         {Array.isArray(foods) ? (
@@ -341,7 +342,7 @@ export default function FoodList() {
       </div>
 
       <br />
-      <hr className="border-t-4 border-black" />
+      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
     </>
   );
