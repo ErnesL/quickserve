@@ -12,11 +12,9 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.15.11",
-    "base64-js": "^1.5.1",
-    "gridfs-stream": "^1.1.1",
+    "jimp": "^0.22.12",
     "mongoose": "^8.1.1",
     "next": "14.1.0",
-    "numjs": "^0.16.1",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^5.0.1"

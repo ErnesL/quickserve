@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 
 export async function POST(request) {
-  const { title, description, ingredients, price, processed } =
+  const { title, description, ingredients, price, processed, strImage } =
     await request.json();
   await connectDB();
   await Food.create({
@@ -12,11 +12,12 @@ export async function POST(request) {
     description,
     ingredients,
     price,
-    quantity,
-    total,
+    quantity: 0,
+    total: 0,
     processed,
-    type,
-    rating,
+    type : "food",
+    rating: 5,
+    strImage,
   });
   return NextResponse.json({ message: "Food created" }, { status: 201 });
 }
