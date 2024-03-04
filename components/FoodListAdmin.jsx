@@ -23,14 +23,14 @@ export default async function FoodListAdmin() {
 
   return (
     <>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-24">
         <h1 className="text-xl max-w-[20%] p-3 m-5 rounded-lg bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white">
           <Link href={`/admin/addFood`} className="max-w-[20%]">
             Añadir Comida
           </Link>
         </h1>
       </div>
-      
+
       <br />
       <br />
       <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
@@ -40,7 +40,6 @@ export default async function FoodListAdmin() {
       <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
       <div className="flex flex-wrap p-1 justify-center ">
-        
         {foods.map((t) => {
           if (t.type === "entries") {
             return (
@@ -71,7 +70,7 @@ export default async function FoodListAdmin() {
       <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
       <div className="flex flex-wrap p-1 justify-center ">
-      {foods.map((t) => {
+        {foods.map((t) => {
           if (t.type === "food") {
             return (
               <div
@@ -101,7 +100,7 @@ export default async function FoodListAdmin() {
       <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
       <div className="flex flex-wrap p-1 justify-center ">
-      {foods.map((t) => {
+        {foods.map((t) => {
           if (t.type === "dessert") {
             return (
               <div
@@ -131,7 +130,7 @@ export default async function FoodListAdmin() {
       <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
       <br />
       <div className="flex flex-wrap p-1 justify-center ">
-      {foods.map((t) => {
+        {foods.map((t) => {
           if (t.type === "drink") {
             return (
               <div

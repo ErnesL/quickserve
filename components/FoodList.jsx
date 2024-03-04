@@ -161,7 +161,6 @@ export default function FoodList() {
   };
 
   // Se genera carrito que solo incluye los items con cantidad mayor a 0 pero en la posicion correcta con respecto al arreglo quantity
-  //const filteredCartUI = cart.filter((item, index) => quantities[index] > 0);
   const filteredCart = new Array(foods.length).fill(null);
   for (let i = 0; i < foods.length; i++) {
     if (quantities[i] > 0) {
@@ -174,7 +173,7 @@ export default function FoodList() {
   return (
     <>
       {/* drawer */}
-      <div className="flex justify-between mr-[10vw] ml-[10vw] mt-[5vh]">
+      <div className="flex w-full justify-between px-20 fixed bottom-10 z-10">
         {["right"].map((anchor) => (
           <Drawer
             key={anchor}
@@ -199,11 +198,17 @@ export default function FoodList() {
       {/* Tarjetas de comidas */}
       <br />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1
+        className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white mt-10"
+        id="entradas"
+      >
         ENTRADAS
       </h1>
       <br />
-      <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+      <hr
+        className="border-t-4 border-black max-w-[80vw] mx-auto"
+        id="entradas"
+      />
       <br />
 
       <div className="flex flex-wrap p-2 justify-center pt-5 z-0">
