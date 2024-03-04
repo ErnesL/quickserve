@@ -49,6 +49,8 @@ async function writeCartToMongoDB(filteredCart) {
     }
 
     console.log("Cart written to MongoDB successfully");
+    alert("Orden procesada con éxito!");
+    window.location.reload();
   } catch (error) {
     console.error("Error writing cart to MongoDB: ", error);
   }
@@ -177,8 +179,6 @@ export default function FoodList() {
 
       {/* Tarjetas de comidas */}
       <br />
-      <hr className="border-t-4 border-black" />
-      <br />
       <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
         ENTRADAS
       </h1>
@@ -189,10 +189,7 @@ export default function FoodList() {
           foods.map((food, index) => {
             if (food.type === "entries") {
               return (
-                <div
-                  className="p-3"
-                  key={food.id || index}
-                >
+                <div className="p-3" key={food.id || index}>
                   <Card
                     image={<h1>IMAGEN</h1>}
                     title={food.title}
@@ -225,10 +222,7 @@ export default function FoodList() {
           foods.map((food, index) => {
             if (food.type === "food") {
               return (
-                <div
-                  className="p-3"
-                  key={food.id || index}
-                >
+                <div className="p-3" key={food.id || index}>
                   <Card
                     image={<h1>IMAGEN</h1>}
                     title={food.title}
@@ -260,10 +254,7 @@ export default function FoodList() {
           foods.map((food, index) => {
             if (food.type === "drink") {
               return (
-                <div
-                  className="p-3"
-                  key={food.id || index}
-                >
+                <div className="p-3" key={food.id || index}>
                   <Card
                     image={<h1>IMAGEN</h1>}
                     title={food.title}
@@ -295,10 +286,7 @@ export default function FoodList() {
           foods.map((food, index) => {
             if (food.type === "dessert") {
               return (
-                <div
-                  className="p-3"
-                  key={food.id || index}
-                >
+                <div className="p-3" key={food.id || index}>
                   <Card
                     image={<h1>IMAGEN</h1>}
                     title={food.title}
