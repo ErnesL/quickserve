@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 export default function EditFoodForm({
   id,
   title,
+  type,
   description,
   ingredients,
   price,
@@ -14,11 +15,22 @@ export default function EditFoodForm({
   const [newDescription, setNewDescription] = useState(description);
   const [newIngredients, setNewIngredients] = useState(ingredients);
   const [newPrice, setNewPrice] = useState(price);
+  const [newType, setNewType] = useState(type);
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (
+      newType !== "entries" &&
+      newType !== "food" &&
+      newType !== "dessert" &&
+      newType !== "drink"
+    ) {
+      alert("El tipo de comida debe ser: entries, food, dessert, drink.");
+      return;
+    }
 
     try {
       const res = await fetch(`http://localhost:3000/api/foods/${id}`, {
@@ -31,6 +43,7 @@ export default function EditFoodForm({
           newDescription,
           newIngredients,
           newPrice,
+          newType,
         }),
       });
 
@@ -48,7 +61,7 @@ export default function EditFoodForm({
   return (
     <div className="p-40">
       <div className="p-5">
-        <h1 className="text-center text-2xl font-semibold text-black">
+        <h1 className="text-center text-2xl font-semibold text-blue-500">
           Editando Comida
         </h1>
       </div>
@@ -70,6 +83,28 @@ export default function EditFoodForm({
                 id="name"
                 onChange={(e) => setNewTitle(e.target.value)}
                 value={newTitle}
+                type="text"
+                placeholder="Topic Title"
+              />
+            </div>
+          </div>
+
+          <div className="md:flex md:items-center mb-6">
+            <div className="md:w-1/3">
+              <label
+                className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
+                htmlFor="type"
+              >
+                Tipo:
+              </label>
+            </div>
+
+            <div className="md:w-2/3">
+              <input
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-900"
+                id="type"
+                onChange={(e) => setNewType(e.target.value)}
+                value={newType}
                 type="text"
                 placeholder="Topic Title"
               />
@@ -159,46 +194,46 @@ export default function EditFoodForm({
 }
 
 // <form onSubmit={handleSubmit} className="flex flex-col gap-3 pt-20">
-    //   <label for="name">Nombre:</label>
-    //   <input
-    //     id="name"
-    //     onChange={(e) => setNewTitle(e.target.value)}
-    //     value={newTitle}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="text"
-    //     placeholder="Topic Title"
-    //   />
-    //   <label for="description">Descripcion:</label>
-    //   <input
-    //     id="description"
-    //     onChange={(e) => setNewDescription(e.target.value)}
-    //     value={newDescription}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="text"
-    //     placeholder="Topic Description"
-    //   />
-    //   <label for="ingredients">Ingredientes:</label>
-    //   <input
-    //     id="ingredients"
-    //     onChange={(e) => setNewIngredients(e.target.value)}
-    //     value={newIngredients}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="text"
-    //     placeholder="Topic Description"
-    //   />
-    //   <label for="price">Precio:</label>
-    //   <input
-    //     id="price"
-    //     onChange={(e) => setNewPrice(e.target.value)}
-    //     value={newPrice}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="number"
-    //     min="0.10"
-    //     step="0.01"
-    //     placeholder="Topic Description"
-    //   />
+//   <label for="name">Nombre:</label>
+//   <input
+//     id="name"
+//     onChange={(e) => setNewTitle(e.target.value)}
+//     value={newTitle}
+//     className="border border-slate-500 px-8 py-2"
+//     type="text"
+//     placeholder="Topic Title"
+//   />
+//   <label for="description">Descripcion:</label>
+//   <input
+//     id="description"
+//     onChange={(e) => setNewDescription(e.target.value)}
+//     value={newDescription}
+//     className="border border-slate-500 px-8 py-2"
+//     type="text"
+//     placeholder="Topic Description"
+//   />
+//   <label for="ingredients">Ingredientes:</label>
+//   <input
+//     id="ingredients"
+//     onChange={(e) => setNewIngredients(e.target.value)}
+//     value={newIngredients}
+//     className="border border-slate-500 px-8 py-2"
+//     type="text"
+//     placeholder="Topic Description"
+//   />
+//   <label for="price">Precio:</label>
+//   <input
+//     id="price"
+//     onChange={(e) => setNewPrice(e.target.value)}
+//     value={newPrice}
+//     className="border border-slate-500 px-8 py-2"
+//     type="number"
+//     min="0.10"
+//     step="0.01"
+//     placeholder="Topic Description"
+//   />
 
-    //   <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-    //     Update Topic
-    //   </button>
-    // </form>
+//   <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
+//     Update Topic
+//   </button>
+// </form>

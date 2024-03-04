@@ -16,7 +16,7 @@ export default function Card({
   ) : image;
 
   return (
-    <div className="card card-compact w-96 bg-black shadow-xls">
+    <div className="card min-h-[100%] card-compact w-96 bg-black shadow-xls">
       <figure>
         <img src={defaultImage} alt={title || "Plate"} />
       </figure>
