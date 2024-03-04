@@ -174,7 +174,7 @@ export default function FoodList() {
   return (
     <>
       {/* drawer */}
-      <div className="flex justify-end mr-[10vw] mt-[5vh]">
+      <div className="flex justify-end mr-[10vw] mt-28">
         {["right"].map((anchor) => (
           <Drawer
             key={anchor}
@@ -208,7 +208,7 @@ export default function FoodList() {
       </h1>
       <br />
 
-      <div className="flex flex-wrap p-2 justify-center pt-5">
+      <div className="flex flex-wrap p-2 justify-center pt-5 z-0">
         {Array.isArray(foods) ? (
           foods.map((food, index) => {
             if (food.type === "entries") {
