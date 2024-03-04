@@ -20,15 +20,12 @@ export default function NavBar() {
             NoBU | Asian Food
           </span>
         </Link>
-        <div
-          className="w-full md:block md:w-auto"
-          id="navbar-default"
-        >
+        <div className="w-full md:block md:w-auto" id="navbar-default">
           <ul className="font-medium items-center flex justify-end p-4 md:p-0 mt-4 rounded-lg md:flex-row md:space-x-8 rtl:space-x-reverse">
             <li>
               <a
-                href="#"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                href="#entradas"
+                className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500"
                 aria-current="page"
               >
                 Entradas
@@ -36,7 +33,7 @@ export default function NavBar() {
             </li>
             <li>
               <a
-                href="#"
+                href="#platos"
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Platos
@@ -44,7 +41,7 @@ export default function NavBar() {
             </li>
             <li>
               <a
-                href="#"
+                href="#bebidas"
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Bebidas
@@ -52,7 +49,7 @@ export default function NavBar() {
             </li>
             <li>
               <a
-                href="#"
+                href="#postres"
                 className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
               >
                 Postres
@@ -67,7 +64,7 @@ export default function NavBar() {
                 md:dark:hover:text-blue-500 dark:hover:bg-gray-700
                 dark:hover:text-white md:dark:hover:bg-transparent"
               >
-                Admin
+                Añadir
               </Link>
             </li>
             <li>

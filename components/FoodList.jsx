@@ -49,8 +49,6 @@ async function writeCartToMongoDB(filteredCart) {
     }
 
     console.log("Cart written to MongoDB successfully");
-    alert("Orden procesada con éxito!");
-    window.location.reload();
   } catch (error) {
     console.error("Error writing cart to MongoDB: ", error);
   }
@@ -200,7 +198,12 @@ export default function FoodList() {
 
       {/* Tarjetas de comidas */}
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <hr className="border-t-4 border-black" />
+      <br />
+      <h1
+        className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        id="entradas"
+      >
         ENTRADAS
       </h1>
       <br />
@@ -233,7 +236,10 @@ export default function FoodList() {
 
       <hr className="border-t-4 border-black" />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1
+        className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        id="platos"
+      >
         COMIDAS
       </h1>
       <br />
@@ -266,7 +272,10 @@ export default function FoodList() {
 
       <hr className="border-t-4 border-black" />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1
+        className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        id="bebidas"
+      >
         BEBIDAS
       </h1>
       <br />
@@ -298,7 +307,10 @@ export default function FoodList() {
 
       <hr className="border-t-4 border-black" />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1
+        className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+        id="postres"
+      >
         POSTRES
       </h1>
       <br />
