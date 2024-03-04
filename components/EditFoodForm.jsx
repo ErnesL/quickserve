@@ -103,14 +103,17 @@ export default function EditFoodForm({
             </div>
 
             <div className="md:w-2/3">
-              <input
+              <select
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-gray-900"
                 id="type"
                 onChange={(e) => setNewType(e.target.value)}
                 value={newType}
-                type="text"
-                placeholder="Topic Title"
-              />
+              >
+                <option value="entries">entries</option>
+                <option value="food">food</option>
+                <option value="dessert">dessert</option>
+                <option value="drink">drink</option>
+              </select>
             </div>
           </div>
 
