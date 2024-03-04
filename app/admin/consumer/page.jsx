@@ -19,6 +19,33 @@ const getCart = async () => {
   }
 };
 
+const handleOnClick = async (_id) => {
+  _id.preventDefault();
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/cart/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        newProcessed: true,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Falla al momento de actualizar processed: true");
+    }
+
+    router.push("/admin/consumer");
+    router.refresh();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//#TODO: colocar el handleOnClick en la propiedad onClick del botón
+
 export default async function FoodListAdmin() {
   const { cart } = await getCart();
 

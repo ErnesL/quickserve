@@ -24,19 +24,15 @@
 
 ### BACKEND
 
-###### Tema de la FOTO @ROY
-
 - Handling para vista protegida. Para este sprint seria bueno que nada mas colocando /admin pueda ingresar. Para el ultimo sprint vamos a utilizar un sistema CRUD especifico para los usuarios.
-
-- Falta colocar una ruta PUT que modifique el valor de `processed` a true una vez que el chef lo marque.
 
 - Falta colocar el handling para las imagenes.
 
 # DONE
 
-Coloquen aqui las tareas que van completando para revisar que esten bien
-
 - Es necesario dividir el menu por `["entries", "food", "drink", "dessert"]`. Puedes acceder utilizando food.type === 'entries'.
+
+- Falta colocar una ruta PUT que modifique el valor de `processed` a true una vez que el chef lo marque.
 
 # NOT DOABLE ATM
 
