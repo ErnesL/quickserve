@@ -33,7 +33,6 @@ export default function addFoodForm() {
   }
 
   function imageToBase64(file) {
-
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.onloadend = () => resolve(reader.result);
@@ -44,47 +43,119 @@ export default function addFoodForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    //imageToBase64(image).then(async (dataUrl) => {
+    //console.log(dataUrl); // Aquí está tu imagen en base64
+    //setStrImage(dataUrl);
     if (load) {
-      //imageToBase64(image).then(async (dataUrl) => {
-      //console.log(dataUrl); // Aquí está tu imagen en base64
-      //setStrImage(dataUrl);
-      if (!title || !description || !ingredients || !price || !type) {
+      if (!title || !description || !ingredients || !price) {
         alert("Todos los campos deben haber sido llenados.");
         return;
       }
 
-      imageToBase64(image).then(async (dataUrl) => {
-        console.log(dataUrl); // Aquí está tu imagen en base64
-        setStrImage(dataUrl);
-
-    if (type!=="entries" && type!=="food" && type!=="dessert" && type!=="drink") {
-      alert("El tipo de comida debe ser: entries, food, dessert, drink.");
-      return;
-    }
-
-    try {
-      const res = await fetch("http://localhost:3000/api/foods", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ title, description, ingredients, price, type}),
-      });
-
-      if (res.ok) {
-        router.push("/");
-      } else {
-        throw new Error("Hubo un error al añadir la comida");
+      if (
+        type !== "entries" &&
+        type !== "food" &&
+        type !== "dessert" &&
+        type !== "drink"
+      ) {
+        alert("El tipo de comida debe ser: entries, food, dessert, drink.");
+        return;
       }
-    } catch (error) {
-      console.log(error);
+      try {
+        const res = await fetch("http://localhost:3000/api/foods", {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            description,
+            ingredients,
+            price,
+            type,
+            strImage,
+          }),
+        });
+
+        if (res.ok) {
+          router.push("/");
+        } else {
+          throw new Error("Hubo un error al añadir la comida");
+        }
+      } catch (error) {
+        console.log(error);
+      }
     }
+  };
+
+  //Código de js para el manejo de eventos de la imagen
+  const fileInput = useRef(null);
+  const dropZone = useRef(null);
+  const img = useRef(null);
+  const text = useRef(null);
+
+  const uploadImage = (file) => {
+    const fileReader = new FileReader();
+
+    const loadHandler = (e) => {
+      img.current.setAttribute("src", e.target.result);
+      text.current.classList.add("hidden");
+      fileReader.removeEventListener("load", loadHandler);
+    };
+    fileReader.onload = (e) => {
+      setLoad(true);
+      setImage(file);
+    };
+    fileReader.addEventListener("load", loadHandler);
+    fileReader.readAsDataURL(file);
+  };
+
+  useEffect(() => {
+    const dz = dropZone.current;
+    const fi = fileInput.current;
+
+    const clickHandler = () => fi.click();
+    const dragoverHandler = (e) => {
+      e.preventDefault();
+      dz.classList.add("form-file__result--active");
+    };
+    const dragleaveHandler = (e) => {
+      e.preventDefault();
+      dz.classList.remove("form-file__result--active");
+    };
+    const dropHandler = (e) => {
+      e.preventDefault();
+      setLoad(false);
+      fi.files = e.dataTransfer.files;
+      const file = fi.files[0];
+      uploadImage(file);
+    };
+    const changeHandler = (e) => {
+      setLoad(false);
+      const file = e.target.files[0];
+      uploadImage(file);
+    };
+
+    dz.addEventListener("click", clickHandler);
+    dz.addEventListener("dragover", dragoverHandler);
+    dz.addEventListener("dragleave", dragleaveHandler);
+    dz.addEventListener("drop", dropHandler);
+    fi.addEventListener("change", changeHandler);
+
+    return () => {
+      dz.removeEventListener("click", clickHandler);
+      dz.removeEventListener("dragover", dragoverHandler);
+      dz.removeEventListener("dragleave", dragleaveHandler);
+      dz.removeEventListener("drop", dropHandler);
+      fi.removeEventListener("change", changeHandler);
+    };
+  }, []);
 
   return (
     <>
       <div className="p-40">
         <div className="p-5">
-          <h1 className="text-center text-2xl font-semibold text-blue-500">
+          <h1 className="text-center text-2xl font-semibold text-black">
             Agregando Comida
           </h1>
         </div>
