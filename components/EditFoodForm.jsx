@@ -53,7 +53,10 @@ export default function EditFoodForm({
         </h1>
       </div>
       <div className="flex justify-center content-center p-5">
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-sm"
+        >
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label
@@ -159,46 +162,46 @@ export default function EditFoodForm({
 }
 
 // <form onSubmit={handleSubmit} className="flex flex-col gap-3 pt-20">
-    //   <label for="name">Nombre:</label>
-    //   <input
-    //     id="name"
-    //     onChange={(e) => setNewTitle(e.target.value)}
-    //     value={newTitle}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="text"
-    //     placeholder="Topic Title"
-    //   />
-    //   <label for="description">Descripcion:</label>
-    //   <input
-    //     id="description"
-    //     onChange={(e) => setNewDescription(e.target.value)}
-    //     value={newDescription}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="text"
-    //     placeholder="Topic Description"
-    //   />
-    //   <label for="ingredients">Ingredientes:</label>
-    //   <input
-    //     id="ingredients"
-    //     onChange={(e) => setNewIngredients(e.target.value)}
-    //     value={newIngredients}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="text"
-    //     placeholder="Topic Description"
-    //   />
-    //   <label for="price">Precio:</label>
-    //   <input
-    //     id="price"
-    //     onChange={(e) => setNewPrice(e.target.value)}
-    //     value={newPrice}
-    //     className="border border-slate-500 px-8 py-2"
-    //     type="number"
-    //     min="0.10"
-    //     step="0.01"
-    //     placeholder="Topic Description"
-    //   />
+//   <label for="name">Nombre:</label>
+//   <input
+//     id="name"
+//     onChange={(e) => setNewTitle(e.target.value)}
+//     value={newTitle}
+//     className="border border-slate-500 px-8 py-2"
+//     type="text"
+//     placeholder="Topic Title"
+//   />
+//   <label for="description">Descripcion:</label>
+//   <input
+//     id="description"
+//     onChange={(e) => setNewDescription(e.target.value)}
+//     value={newDescription}
+//     className="border border-slate-500 px-8 py-2"
+//     type="text"
+//     placeholder="Topic Description"
+//   />
+//   <label for="ingredients">Ingredientes:</label>
+//   <input
+//     id="ingredients"
+//     onChange={(e) => setNewIngredients(e.target.value)}
+//     value={newIngredients}
+//     className="border border-slate-500 px-8 py-2"
+//     type="text"
+//     placeholder="Topic Description"
+//   />
+//   <label for="price">Precio:</label>
+//   <input
+//     id="price"
+//     onChange={(e) => setNewPrice(e.target.value)}
+//     value={newPrice}
+//     className="border border-slate-500 px-8 py-2"
+//     type="number"
+//     min="0.10"
+//     step="0.01"
+//     placeholder="Topic Description"
+//   />
 
-    //   <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
-    //     Update Topic
-    //   </button>
-    // </form>
+//   <button className="bg-green-600 font-bold text-white py-3 px-6 w-fit">
+//     Update Topic
+//   </button>
+// </form>

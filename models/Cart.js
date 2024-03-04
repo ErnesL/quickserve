@@ -34,9 +34,6 @@ const CartSchema = new mongoose.Schema(
       type: String,
       enum: ["entries", "food", "drink", "dessert"],
     },
-    orderId: {
-      type: Number,
-    },
     clientComments: {
       type: String,
     },
