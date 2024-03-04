@@ -3,18 +3,18 @@ import Cart from "@/models/Cart";
 import { NextResponse } from "next/server";
 
 export async function POST(request) {
-  const foods = await request.json();
+  const carts = await request.json();
   await connectDB();
 
-  for (const food of foods) {
+  for (const cart of carts) {
     await Cart.create({
-      title: food.title,
-      description: food.description,
-      ingredients: food.ingredients,
-      price: food.price,
-      quantity: food.quantity,
-      total: food.total,
-      processed: food.processed,
+      title: cart.title,
+      description: cart.description,
+      ingredients: cart.ingredients,
+      price: cart.price,
+      quantity: cart.quantity,
+      total: cart.total,
+      processed: cart.processed,
     });
   }
   return NextResponse.json(

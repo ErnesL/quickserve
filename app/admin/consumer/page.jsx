@@ -19,40 +19,57 @@ const getCart = async () => {
   }
 };
 
+const handleOnClick = async (_id) => {
+  _id.preventDefault();
+
+  try {
+    const res = await fetch(`http://localhost:3000/api/cart/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify({
+        newProcessed: true,
+      }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Falla al momento de actualizar processed: true");
+    }
+
+    router.push("/admin/consumer");
+    router.refresh();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default async function FoodListAdmin() {
   const { cart } = await getCart();
 
   //#TODO: 002
   return (
     <>
-      <div className="flex flex-wrap p-1 justify-center ">
-        <div className="p-4 border m-3 flex justify-between min-w-[25%] min-h-[15vh] border-gray-900 rounded-lg bg-gray-600 hover:bg-gray-500">
-          <div className="flex flex-col justify-center">
-            <h2 className="font-bold text-2xl text-white"></h2>
-            <div className="text-white"></div>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-wrap p-1 justify-center ">
-        {cart.map((t) => (
-          <div
-            key={t._id}
-            className="p-4 border m-3 flex justify-between min-w-[25%] min-h-[15vh] border-gray-900 rounded-lg bg-gray-600 hover:bg-gray-500"
-          >
-            <div className="flex flex-col justify-center">
-              <h2 className="font-bold text-2xl text-white">{t.title}</h2>
-              <div className="text-white">{t.description}</div>
-            </div>
-            <div className="flex flex-col justify-center">
-              <RemoveBtn id={t._id} />
-              <Link href={`/admin/editFood/${t._id}`}>
-                <HiPencilAlt size={24} />
-              </Link>
-            </div>
-          </div>
+      <ul className="menu bg-base-200 w-100">
+        <li className="menu-title">Próximo a preparar</li>
+        {cart.map((t, index) => (
+          <li key={t._id}>
+            <a className="block p-4 border m-3 flex justify-between min-w-[25%] min-h-[15vh] border-gray-900 rounded-lg bg-gray-600 hover:bg-gray-500">
+              <div className="flex flex-col justify-center">
+                <h2 className="font-bold text-2xl text-white">{t.title}</h2>
+                <div className="text-white">{t.description}</div>
+                <h1 className="text-white">#{index + 1} </h1>
+              </div>
+              <button
+                className="btn btn-outline btn-success"
+                onClick={handleOnClick(t._id)}
+              >
+                Ready
+              </button>
+            </a>
+          </li>
         ))}
-      </div>
+      </ul>
     </>
   );
 }

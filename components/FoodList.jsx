@@ -4,7 +4,6 @@ import Card from "@/components/Card";
 import Box from "@mui/material/Box";
 import Drawer from "@/components/Drawer";
 
-
 const getFoods = async () => {
   try {
     const response = await fetch("http://localhost:3000/api/foods", {
@@ -38,7 +37,7 @@ async function writeCartToMongoDB(filteredCart) {
         processed: false,
       });
     });
-  //#TODO: 001
+
   try {
     const response = await fetch("http://localhost:3000/api/cart", {
       method: "POST",
@@ -157,22 +156,22 @@ export default function FoodList() {
       <div className="flex justify-end mr-[10vw] mt-[5vh]">
         {["right"].map((anchor) => (
           <Drawer
-          key={anchor}
-          anchor={anchor}
-          state={state}
-          toggleDrawer={toggleDrawer}
-          list={list}
-          filteredCart={filteredCart}
-          quantities={quantities}
-          decrementQuantity={decrementQuantity}
-          incrementQuantity={incrementQuantity}
-          texto={texto}
-          handleChange={handleChange}
-          subtotal={subtotal}
-          taxes={taxes}
-          total={total}
-          writeCartToMongoDB={writeCartToMongoDB}
-        />
+            key={anchor}
+            anchor={anchor}
+            state={state}
+            toggleDrawer={toggleDrawer}
+            list={list}
+            filteredCart={filteredCart}
+            quantities={quantities}
+            decrementQuantity={decrementQuantity}
+            incrementQuantity={incrementQuantity}
+            texto={texto}
+            handleChange={handleChange}
+            subtotal={subtotal}
+            taxes={taxes}
+            total={total}
+            writeCartToMongoDB={writeCartToMongoDB}
+          />
         ))}
       </div>
 
@@ -180,47 +179,15 @@ export default function FoodList() {
       <br />
       <hr className="border-t-4 border-black" />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">ENTRADAS</h1>
-      <br />
-      
-      <div className="flex flex-wrap p-2 justify-center pt-5">
-      {Array.isArray(foods) ? (
-          foods.map((food, index) => {
-            if (food.type === 'entries') {
-              return (
-                <div
-                  className="p-3"
-                  key={food.id || index}
-                >
-                  <Card
-                    image={<h1>IMAGEN</h1>}
-                    title={food.title}
-                    ingredients={food.ingredients}
-                    description={food.description}
-                    price={food.price}
-                    quantity={quantities[index]}
-                    onDecrement={() => decrementQuantity(index)}
-                    onIncrement={() => incrementQuantity(index)}
-                  />
-                </div>
-              );
-            }
-            return null;
-          })
-        ) : (
-          <p>Cargando alimentos...</p>
-        )}
-      </div>
-      
-      <hr className="border-t-4 border-black" />
-      <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">COMIDAS</h1>
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        ENTRADAS
+      </h1>
       <br />
 
       <div className="flex flex-wrap p-2 justify-center pt-5">
-      {Array.isArray(foods) ? (
+        {Array.isArray(foods) ? (
           foods.map((food, index) => {
-            if (food.type === 'food') {
+            if (food.type === "entries") {
               return (
                 <div
                   className="p-3"
@@ -245,15 +212,53 @@ export default function FoodList() {
           <p>Cargando alimentos...</p>
         )}
       </div>
-      
+
       <hr className="border-t-4 border-black" />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">BEBIDAS</h1>
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        COMIDAS
+      </h1>
+      <br />
+
+      <div className="flex flex-wrap p-2 justify-center pt-5">
+        {Array.isArray(foods) ? (
+          foods.map((food, index) => {
+            if (food.type === "food") {
+              return (
+                <div
+                  className="p-3"
+                  key={food.id || index}
+                >
+                  <Card
+                    image={<h1>IMAGEN</h1>}
+                    title={food.title}
+                    ingredients={food.ingredients}
+                    description={food.description}
+                    price={food.price}
+                    quantity={quantities[index]}
+                    onDecrement={() => decrementQuantity(index)}
+                    onIncrement={() => incrementQuantity(index)}
+                  />
+                </div>
+              );
+            }
+            return null;
+          })
+        ) : (
+          <p>Cargando alimentos...</p>
+        )}
+      </div>
+
+      <hr className="border-t-4 border-black" />
+      <br />
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        BEBIDAS
+      </h1>
       <br />
       <div className="flex flex-wrap p-2 justify-center pt-5">
         {Array.isArray(foods) ? (
           foods.map((food, index) => {
-            if (food.type === 'drink') {
+            if (food.type === "drink") {
               return (
                 <div
                   className="p-3"
@@ -278,15 +283,17 @@ export default function FoodList() {
           <p>Cargando alimentos...</p>
         )}
       </div>
-      
+
       <hr className="border-t-4 border-black" />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">POSTRES</h1>
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+        POSTRES
+      </h1>
       <br />
       <div className="flex flex-wrap p-2 justify-center pt-5">
-      {Array.isArray(foods) ? (
+        {Array.isArray(foods) ? (
           foods.map((food, index) => {
-            if (food.type === 'dessert') {
+            if (food.type === "dessert") {
               return (
                 <div
                   className="p-3"

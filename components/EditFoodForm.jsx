@@ -66,7 +66,10 @@ export default function EditFoodForm({
         </h1>
       </div>
       <div className="flex justify-center content-center p-5">
-        <form onSubmit={handleSubmit} className="w-full max-w-sm">
+        <form
+          onSubmit={handleSubmit}
+          className="w-full max-w-sm"
+        >
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label
