@@ -49,6 +49,8 @@ async function writeCartToMongoDB(filteredCart) {
     }
 
     console.log("Cart written to MongoDB successfully");
+    alert("Orden procesada con éxito!");
+    window.location.reload();
   } catch (error) {
     console.error("Error writing cart to MongoDB: ", error);
   }
@@ -197,8 +199,6 @@ export default function FoodList() {
       </div>
 
       {/* Tarjetas de comidas */}
-      <br />
-      <hr className="border-t-4 border-black" />
       <br />
       <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
         ENTRADAS

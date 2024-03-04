@@ -19,11 +19,11 @@ const getCart = async () => {
   }
 };
 
-const handleOnClick = async (_id) => {
+async function writtingToMongoDb(_id) {
   _id.preventDefault();
 
   try {
-    const res = await fetch(`http://localhost:3000/api/cart/${id}`, {
+    const res = await fetch(`http://localhost:3000/api/cart/${_id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",
@@ -62,7 +62,7 @@ export default async function FoodListAdmin() {
               </div>
               <button
                 className="btn btn-outline btn-success"
-                onClick={handleOnClick(t._id)}
+                //onClick={() => writtingToMongoDb(t._id)} // Fix: Pass a function reference instead of invoking the function immediately
               >
                 Ready
               </button>
