@@ -22,25 +22,24 @@ export default async function FoodListAdmin() {
   const { foods } = await getFoodList();
 
   return (
-    <>
-      <div className="flex justify-center mt-24">
-        <h1 className="text-xl max-w-[20%] p-3 m-5 rounded-lg bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white">
-          <Link href={`/admin/addFood`} className="max-w-[20%]">
-            Añadir Comida
-          </Link>
-        </h1>
+    <div className="bg-white">
+      <div className="flex justify-center mt-5">
+        <div className=" mt-16">
+          <h1 className="text-xl p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300">
+            <Link href={`/admin/addFood`} className="max-w-[20%]">
+              Añadir Comida
+            </Link>
+          </h1>
+        </div>
+        <div className="flex justify-center mt-16">
+        <h1 className="text-xl p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300">
+            <Link href={"/admin/consumer"} className="max-w-[20%]">
+              Ordenes en cola
+            </Link>
+          </h1>
+        </div>
       </div>
-      <div className="flex justify-center mt-24">
-        <h1 className="text-xl max-w-[20%] p-3 m-5 rounded-lg bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white">
-          <Link href={"/admin/consumer"} className="max-w-[20%]">
-          Ordenes en cola
-          </Link>
-        </h1>
-      </div>
-
-      <br />
-      <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1 className="mt-5 text-center text-2xl font-semibold whitespace-nowrap text-black">
         ENTRADAS
       </h1>
       <br />
@@ -70,7 +69,7 @@ export default async function FoodListAdmin() {
 
       <br />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap text-black">
         COMIDAS
       </h1>
       <br />
@@ -100,7 +99,7 @@ export default async function FoodListAdmin() {
 
       <br />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap text-black">
         POSTRES
       </h1>
       <br />
@@ -130,7 +129,7 @@ export default async function FoodListAdmin() {
 
       <br />
       <br />
-      <h1 className="text-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+      <h1 className="text-center text-2xl font-semibold whitespace-nowrap text-black">
         BEBIDAS
       </h1>
       <br />
@@ -157,26 +156,6 @@ export default async function FoodListAdmin() {
           }
         })}
       </div>
-      {/* <div className="flex flex-wrap p-1 justify-center ">
-        {foods.map((t) => (
-          <div
-            key={t._id}
-            className="p-4 border m-3 flex justify-between min-w-[25%] min-h-[15vh] border-gray-900 rounded-lg bg-gray-600 hover:bg-gray-500"
-          >
-            <div className="flex flex-col justify-center">
-              <h2 className="font-bold text-2xl text-white">{t.title}</h2>
-              <div className="text-white">{t.description}</div>
-            </div>
-
-            <div className="flex flex-col justify-center">
-              <RemoveBtn id={t._id} />
-              <Link href={`/admin/editFood/${t._id}`}>
-                <HiPencilAlt size={24} />
-              </Link>
-            </div>
-          </div>
-        ))}
-      </div> */}
-    </>
+    </div>
   );
 }

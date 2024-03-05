@@ -22,7 +22,7 @@ export default function CustomDrawer({
   return (
     <React.Fragment key={anchor}>
       <Button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+        className="bg-black hover:bg-[#ff5a60d3] text-white font-bold py-2 px-4 rounded-full"
         onClick={() => {
           alert("Un personal de asistencia va en camino a su mesa");
         }}
@@ -30,7 +30,7 @@ export default function CustomDrawer({
         Ayuda
       </Button>
       <Button
-        className="hover:bg-gray-400 hover:text-black bg-gray-100 p-3 pt-4 text-black rounded-lg font-bold"
+        className="hover:bg-[#9974D9] bg-black p-3 pt-4 text-white rounded-full font-bold"
         onClick={toggleDrawer(anchor, true)}
       >
         Ordenar
@@ -42,16 +42,16 @@ export default function CustomDrawer({
         onClose={toggleDrawer(anchor, false)}
       >
         {list(anchor)}
-        <div className="flex">
-          <div className="min-w-[30vw] max-w-[40vw] grid grid-cols-1 p-3">
-            <h4 className="mb-2 justify-self-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+        <div className="flex justify-center">
+          <div className="min-w-[30vw] max-w-[40vw] flex flex-col justify-center p-3">
+            <h4 className="mb-2 text-center text-5xl font-bold tracking-tight tet-[#9974D9] p-4">
               Orden
             </h4>
             <ul>
               {/* Se mapea el arreglo filteredCart de forma que solo seleccione las comidas y no los nulls. Si es null, entonces no muestra nada */}
               {filteredCart.map((food, index) =>
                 food != null ? (
-                  <li key={index} className="m-2">
+                  <li key={index} className="m-5">
                     <CardPreview
                       image={<h1>IMAGEN</h1>}
                       title={food.title}
@@ -68,10 +68,8 @@ export default function CustomDrawer({
                 ) : null
               )}
 
-              <div className="p-3 flex justify-center">
+              {/* <div className="p-3 flex justify-center">
                 <form action="">
-                  {/* 
-                                                <input id="GET-notes" className="rounded-full" type="text" name="name" /> */}
                   <label className="font-normal text-gray-700 dark:text-gray-400 p-1">
                     Notas de la orden <br /> <br />
                   </label>
@@ -82,29 +80,58 @@ export default function CustomDrawer({
                     onChange={handleChange}
                   />
                 </form>
-              </div>
+              </div> */}
             </ul>
-            <h4 className="mb-2 text-center text-2xl font-bold tracking-tight text-gray-900 dark:text-black p-4">
+            <h4 className="mb-2 text-center text-5xl font-bold tracking-tight tet-[#9974D9] p-4">
+              <br />
+              <hr
+        className="border-t-4 border-black max-w-[80vw] mx-auto"
+        id="entradas"
+      />
+              <br />
               Factura
-            </h4>
+              <br />
             <br />
-            <div className="p-2 ml-5">
-              <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-                Subtotal de la orden: ${subtotal} <br />
-              </h6>
+            </h4>
+            
+            <br />
+            <div className="flex justify-end max-w-[80%] p-2 ml-5">
+              <div className="">
+                <h6 className="text-[#9974D9] mb-2 text-3xl font-bold tracking-tight">
+                  Subtotal de la orden:
+                </h6>
+              </div>
+              <div>
+              <h6 className="ml-3 font-bold text-4xl"> ${subtotal} <br /></h6>
+              </div>
             </div>
-            <div className="p-2 ml-5">
-              <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-                Taxes: ${taxes} <br />
-              </h6>
+
+            <div className="flex justify-end max-w-[80%] p-2 ml-5">
+              <div>
+                <h6 className="text-[#9974D9] mb-2 text-3xl font-bold tracking-tight">
+                  Taxes:
+                </h6>
+              </div>
+              <div>
+              <h6 className=" ml-3 font-bold text-4xl"> ${taxes} <br /> </h6>
+              </div>
             </div>
-            <div className="p-2 ml-5">
-              <h6 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-500">
-                Total: ${total}
-              </h6>
+
+            <div className="flex justify-end max-w-[80%] p-2 ml-5">
+              <div>
+                <h6 className="mb-2 text-3xl font-bold tracking-tight text-[#9974D9]">
+                  Total:
+                </h6>
+              </div>
+              <div>
+              <h6 className=" ml-3 font-bold text-4xl"> ${total} <br /> <br /> <br /> </h6>
+              </div>
             </div>
+            <br />
+            
+            <br />
             <button
-              className="btn btn-outline btn-success"
+              className=" bg-black self-center  max-w-[25%] w-full p-3 rounded-full font-bold text-white hover:bg-[#9974D9] "
               onClick={() => {
                 {
                   writeCartToMongoDB(filteredCart);

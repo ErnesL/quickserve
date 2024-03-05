@@ -49,21 +49,27 @@ export default async function FoodListAdmin() {
   const { cart } = await getCart();
 
   return (
-    <>
-      <ul className="menu bg-base-200 w-100 content-center">
-        <li className="menu-title text-center text-3xl">
-          Próximo a preparar...
+    <div className="bg-white min-h-[100vh] mt-20">
+      <ul className="bg-white">
+        <li className="mb-10 text-center text-2xl font-semibold whitespace-nowrap text-black">
+          <h1
+            className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black mt-16"
+            id="entradas"
+          >
+            <br />
+            Próximo a preparar...
+          </h1>
         </li>
         {cart.map((t, index) => (
           <li key={t._id} className="">
-            <a className="p-4 border m-3 flex justify-between min-w-[15vw] max-w-[60vw] min-h-[15vh] border-gray-900 rounded-lg bg-gray-600 hover:bg-gray-500">
+            <a className="p-4 border ml-[20vw] m-3 flex justify-between min-w-[15vw] max-w-[60vw] min-h-[15vh] rounded-lg bg-black hover:bg-black">
               <div className="flex flex-col justify-center">
                 <h2 className="font-bold text-2xl text-white">{t.title}</h2>
                 <div className="text-white">{t.description}</div>
                 <h1 className="text-white"># {index + 1} </h1>
               </div>
               <button
-                className="btn btn-outline btn-success"
+                className="text-xl p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300"
                 onClick={() => writtingToMongoDb(t._id)} // Fix: Pass a function reference instead of invoking the function immediately
               >
                 Ready
@@ -72,6 +78,6 @@ export default async function FoodListAdmin() {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }

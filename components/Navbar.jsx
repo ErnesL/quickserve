@@ -2,18 +2,19 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import icon from "../public/iconCart.png";
+import NoBU from "../public/logoNoBU.png";
+//import Team from "../public/logoTeam.png";
 
 export default function NavBar() {
   return (
-    <nav className="w-full h-100 bg-black border-gray-200 dark:bg-black-900 fixed m-0 p-0 top-0 overflow-hidden z-10">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <nav className="w-full min-h-100 max-h-100 bg-black border-gray-200 dark:bg-black-900 fixed m-0 p-0 top-0 overflow-hidden z-10">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto">
         <Link
           href={"/"}
           className="flex items-center space-x-3 rtl:space-x-reverse"
         >
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            NoBU | Asian Food
+          <span className="hover:text-[#9974D9] m-3 self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <Image src={NoBU} alt="Logo" width={250} height={80} />
           </span>
         </Link>
         <div className="w-full md:block md:w-auto" id="navbar-default">
@@ -21,7 +22,7 @@ export default function NavBar() {
             <li>
               <a
                 href="#entradas"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-400 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-white rounded hover:text-[#9974D9]"
                 aria-current="page"
               >
                 Entradas
@@ -30,7 +31,7 @@ export default function NavBar() {
             <li>
               <a
                 href="#platos"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-400 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-white rounded hover:text-[#9974D9]"
               >
                 Platos
               </a>
@@ -38,7 +39,7 @@ export default function NavBar() {
             <li>
               <a
                 href="#bebidas"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-400 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-white rounded hover:text-[#9974D9]"
               >
                 Bebidas
               </a>
@@ -46,7 +47,7 @@ export default function NavBar() {
             <li>
               <a
                 href="#postres"
-                className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-gray-400 md:p-0 dark:text-white md:dark:hover:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                className="block py-2 px-3 text-white rounded hover:text-[#9974D9]"
               >
                 Postres
               </a>

@@ -150,12 +150,11 @@ export default function addFoodForm() {
   // }, []);
 
   return (
-    <>
-      <div className="p-40">
+      <div className="p-40 bg-white min-h-[100vh]">
         <div className="p-5">
-          <h1 className="text-center text-2xl font-semibold text-black">
-            Agregando Comida
-          </h1>
+          <h1 className="text-center text-4xl font-semibold text-[#9974D9]">
+          Agregando Comida
+        </h1>
         </div>
         <div className="flex justify-center content-center p-5">
           <form onSubmit={handleSubmit} className="w-full max-w-sm">
@@ -309,7 +308,7 @@ export default function addFoodForm() {
               <div className="md:w-1/3"></div>
               <div className="md:w-2/3">
                 <button
-                  className="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  className="font-bold p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300"
                   type="submit"
                 >
                   Crear Comida
@@ -319,6 +318,5 @@ export default function addFoodForm() {
           </form>
         </div>
       </div>
-    </>
   );
 }

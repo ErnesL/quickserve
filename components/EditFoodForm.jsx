@@ -59,9 +59,9 @@ export default function EditFoodForm({
   };
 
   return (
-    <div className="p-40">
+    <div className="p-40 bg-white min-h-[100vh]">
       <div className="p-5">
-        <h1 className="text-center text-2xl font-semibold text-blue-500">
+        <h1 className="text-center text-4xl font-semibold text-[#9974D9]">
           Editando Comida
         </h1>
       </div>
@@ -182,11 +182,11 @@ export default function EditFoodForm({
             </div>
           </div>
 
-          <div className="md:flex md:items-center p-5">
-            <div className="md:w-1/3"></div>
-            <div className="md:w-2/3">
+          <div className="flex justify-center md:items-center p-5">
+            
+            <div className="">
               <button
-                className="shadow bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                className="font-bold p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300"
                 type="submit"
               >
                 Modificar Comida
