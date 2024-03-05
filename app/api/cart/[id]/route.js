@@ -1,5 +1,5 @@
 import connectDB from "@/lib/dbConnect";
-import Food from "@/models/Food";
+import Cart from "@/models/Cart";
 import { NextResponse } from "next/server";
 
 export async function PUT(request, { params }) {
@@ -13,10 +13,10 @@ export async function PUT(request, { params }) {
     newTotal: total,
     newProcessed: processed,
     newType: type,
-    newRating: rating,
+    newClientComments: clientComments,
   } = await request.json();
   await connectDB();
-  await Food.findByIdAndUpdate(id, {
+  await Cart.findByIdAndUpdate(id, {
     title,
     description,
     ingredients,
@@ -25,14 +25,17 @@ export async function PUT(request, { params }) {
     total,
     processed,
     type,
-    rating,
+    clientComments,
   });
-  return NextResponse.json({ message: "Food updated" }, { status: 200 });
+  return NextResponse.json(
+    { message: "Food in Cart updated" },
+    { status: 200 }
+  );
 }
 
 export async function GET(request, { params }) {
   const { id } = params;
   await connectDB();
-  const food = await Food.findOne({ _id: id });
-  return NextResponse.json({ food }, { status: 200 });
+  const cart = await Cart.findOne({ _id: id });
+  return NextResponse.json({ cart }, { status: 200 });
 }
