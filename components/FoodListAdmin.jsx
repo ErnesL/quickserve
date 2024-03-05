@@ -30,6 +30,13 @@ export default async function FoodListAdmin() {
           </Link>
         </h1>
       </div>
+      <div className="flex justify-center mt-24">
+        <h1 className="text-xl max-w-[20%] p-3 m-5 rounded-lg bg-green-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-white">
+          <Link href={"/admin/consumer"} className="max-w-[20%]">
+          Ordenes en cola
+          </Link>
+        </h1>
+      </div>
 
       <br />
       <br />

@@ -103,7 +103,6 @@ export default function CustomDrawer({
                 Total: ${total}
               </h6>
             </div>
-            //#TODO: 004
             <button
               className="btn btn-outline btn-success"
               onClick={() => {

@@ -1,6 +1,8 @@
-import Link from "next/link";
-import RemoveBtn from "../../../components/RemoveBtn";
-import { HiPencilAlt } from "react-icons/hi";
+"use client";
+
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Router } from "next/router";
 
 const getCart = async () => {
   try {
@@ -20,8 +22,6 @@ const getCart = async () => {
 };
 
 async function writtingToMongoDb(_id) {
-  _id.preventDefault();
-
   try {
     const res = await fetch(`http://localhost:3000/api/cart/${_id}`, {
       method: "PUT",
@@ -33,21 +33,21 @@ async function writtingToMongoDb(_id) {
       }),
     });
 
+    window.location.reload();
+
     if (!res.ok) {
       throw new Error("Falla al momento de actualizar processed: true");
     }
-
-    router.push("/admin/consumer");
-    router.refresh();
   } catch (error) {
     console.log(error);
   }
 }
 
 export default async function FoodListAdmin() {
+  //#TODO: 002
+
   const { cart } = await getCart();
 
-  //#TODO: 002
   return (
     <>
       <ul className="menu bg-base-200 w-100 content-center">
@@ -64,7 +64,7 @@ export default async function FoodListAdmin() {
               </div>
               <button
                 className="btn btn-outline btn-success"
-                //onClick={() => writtingToMongoDb(t._id)} // Fix: Pass a function reference instead of invoking the function immediately
+                onClick={() => writtingToMongoDb(t._id)} // Fix: Pass a function reference instead of invoking the function immediately
               >
                 Ready
               </button>
