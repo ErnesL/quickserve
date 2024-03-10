@@ -2,23 +2,37 @@ import RemoveBtn from "./RemoveBtn";
 import { HiPencilAlt } from "react-icons/hi";
 import Link from "next/link";
 
-
-
-export default function CardAdmin({ image, title, ingredients, description, price, id }) {
+export default function CardAdmin({
+  image,
+  title,
+  ingredients,
+  description,
+  price,
+  id,
+}) {
   const defaultImage =
     "https://catering.grupoelescondite.com/wp-content/uploads/2020/07/menu-degustacion.jpg";
 
-  const renderImage =
-    typeof image === "string" ? (
-      <img src={image || defaultImage} alt={title || "Plate"} />
-    ) : (
-      image
-    );
+    let imagePath = "";
+    if(typeof image === 'string'){
+      console.log(image);
+      imagePath = `/menu/${image}`;
+      console.log(imagePath);
+    } else {
+      imagePath = defaultImage;
+    }
+
+  // const renderImage =
+  //   typeof image === "string" ? (
+  //     <img src={image || defaultImage} alt={title || "Plate"} />
+  //   ) : (
+  //     image
+  //   );
 
   return (
     <div className="card card-side w-96 bg-black shadow-xls min-w-[30vw]">
       <figure className="max-w-[10vw] min-w-[10vw]">
-        <img src={defaultImage} alt={title || "Plate"} />
+        <img src={imagePath} alt={title || "Plate"} />
       </figure>
       <div className="card-body min-w-[20vw]">
         <h2 className="card-title text-white">{title || "Title"}</h2>

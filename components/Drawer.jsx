@@ -53,7 +53,7 @@ export default function CustomDrawer({
                 food != null ? (
                   <li key={index} className="m-5">
                     <CardPreview
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}

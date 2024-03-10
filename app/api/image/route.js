@@ -15,5 +15,6 @@ export async function POST(request) {
 
     const filePath = path.join(process.cwd(), "public", "menu", image.name);
     console.log(filePath);
+    await writeFile(filePath, buffer);
     return NextResponse.json({ message: "Imagen subida" , image: image.name}, { status: 201 });
 }

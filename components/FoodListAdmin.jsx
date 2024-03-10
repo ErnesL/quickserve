@@ -54,7 +54,7 @@ export default async function FoodListAdmin() {
                 className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
               >
                 <CardAdmin
-                  image={<h1>IMAGEN</h1>}
+                  image={t.strImage}
                   title={t.title}
                   ingredients={t.ingredients}
                   description={t.description}
@@ -84,7 +84,7 @@ export default async function FoodListAdmin() {
                 className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
               >
                 <CardAdmin
-                  image={<h1>IMAGEN</h1>}
+                  image={t.strImage}
                   title={t.title}
                   ingredients={t.ingredients}
                   description={t.description}
@@ -114,7 +114,7 @@ export default async function FoodListAdmin() {
                 className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
               >
                 <CardAdmin
-                  image={<h1>IMAGEN</h1>}
+                  image={t.strImage}
                   title={t.title}
                   ingredients={t.ingredients}
                   description={t.description}
@@ -144,7 +144,7 @@ export default async function FoodListAdmin() {
                 className="m-3 flex justify-between min-w-[25%] min-h-[15vh]"
               >
                 <CardAdmin
-                  image={<h1>IMAGEN</h1>}
+                  image={t.strImage}
                   title={t.title}
                   ingredients={t.ingredients}
                   description={t.description}

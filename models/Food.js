@@ -38,7 +38,7 @@ const FoodSchema = new mongoose.Schema(
       type: Number,
       default: 5,
     },
-    strImg: {
+    strImage: {
       type: String,
       default: null
     },

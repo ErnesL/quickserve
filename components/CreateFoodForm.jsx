@@ -10,7 +10,6 @@ export default function addFoodForm() {
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [price, setPrice] = useState("");
-  const [strImage, setStrImage] = useState("");
   const [file, setFile] = useState("");
   const [type, setType] = useState("");
 
@@ -36,7 +35,6 @@ export default function addFoodForm() {
     console.log(data)
     console.log(data.image)
     console.log(typeof data.image)
-    setStrImage(data.image);
     if (
       type !== "entries" &&
       type !== "food" &&
@@ -58,7 +56,7 @@ export default function addFoodForm() {
           ingredients,
           price,
           type,
-          strImage,
+          strImage: data.image,
         }),
       });
 
