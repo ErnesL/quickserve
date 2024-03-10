@@ -12,9 +12,8 @@ export default function EditFoodForm({
   price,
   strImage,
 }) {
-  console.log(type)
-  const defaultImage =
-    "https://catering.grupoelescondite.com/wp-content/uploads/2020/07/menu-degustacion.jpg";
+  console.log(type);
+  const defaultImage = `/menu/menu-degustacion.jpg`;
 
   let imagePath = "";
   if (typeof strImage === "string") {

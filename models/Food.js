@@ -40,7 +40,7 @@ const FoodSchema = new mongoose.Schema(
     },
     strImage: {
       type: String,
-      default: null
+      default: null,
     },
   },
   { timestamps: true }

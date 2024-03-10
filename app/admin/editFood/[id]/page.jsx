@@ -21,5 +21,15 @@ export default async function EditFood({ params }) {
   const { food } = await getFoodById(id);
   const { title, description, type, ingredients, price, strImage } = food;
 
-  return <EditFoodForm id={id} title={title} type={type} description={description} ingredients={ingredients} price={price} strImage={strImage} />;
+  return (
+    <EditFoodForm
+      id={id}
+      title={title}
+      type={type}
+      description={description}
+      ingredients={ingredients}
+      price={price}
+      strImage={strImage}
+    />
+  );
 }

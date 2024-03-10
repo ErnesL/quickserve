@@ -358,7 +358,7 @@ export default function FoodList() {
         <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
         <br />
         <footer className="flex justify-center">
-        <Image src={Team} alt="Logo" width={250} />
+          <Image src={Team} alt="Logo" width={250} />
         </footer>
       </div>
     </>

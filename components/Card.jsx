@@ -9,8 +9,7 @@ export default function Card({
   onDecrement,
   onIncrement,
 }) {
-  const defaultImage =
-    "https://catering.grupoelescondite.com/wp-content/uploads/2020/07/menu-degustacion.jpg";
+  const defaultImage = `/menu/menu-degustacion.jpg`;
 
   let imagePath = "";
   if (typeof image === "string") {

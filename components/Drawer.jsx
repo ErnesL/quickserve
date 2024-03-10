@@ -85,15 +85,15 @@ export default function CustomDrawer({
             <h4 className="mb-2 text-center text-5xl font-bold tracking-tight tet-[#9974D9] p-4">
               <br />
               <hr
-        className="border-t-4 border-black max-w-[80vw] mx-auto"
-        id="entradas"
-      />
+                className="border-t-4 border-black max-w-[80vw] mx-auto"
+                id="entradas"
+              />
               <br />
               Factura
               <br />
-            <br />
+              <br />
             </h4>
-            
+
             <br />
             <div className="flex justify-end max-w-[80%] p-2 ml-5">
               <div className="">
@@ -102,7 +102,10 @@ export default function CustomDrawer({
                 </h6>
               </div>
               <div>
-              <h6 className="ml-3 font-bold text-4xl"> ${subtotal} <br /></h6>
+                <h6 className="ml-3 font-bold text-4xl">
+                  {" "}
+                  ${subtotal} <br />
+                </h6>
               </div>
             </div>
 
@@ -113,7 +116,10 @@ export default function CustomDrawer({
                 </h6>
               </div>
               <div>
-              <h6 className=" ml-3 font-bold text-4xl"> ${taxes} <br /> </h6>
+                <h6 className=" ml-3 font-bold text-4xl">
+                  {" "}
+                  ${taxes} <br />{" "}
+                </h6>
               </div>
             </div>
 
@@ -124,11 +130,14 @@ export default function CustomDrawer({
                 </h6>
               </div>
               <div>
-              <h6 className=" ml-3 font-bold text-4xl"> ${total} <br /> <br /> <br /> </h6>
+                <h6 className=" ml-3 font-bold text-4xl">
+                  {" "}
+                  ${total} <br /> <br /> <br />{" "}
+                </h6>
               </div>
             </div>
             <br />
-            
+
             <br />
             <button
               className=" bg-black self-center  max-w-[25%] w-full p-3 rounded-full font-bold text-white hover:bg-[#9974D9] "
