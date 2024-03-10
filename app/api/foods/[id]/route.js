@@ -14,6 +14,7 @@ export async function PUT(request, { params }) {
     newProcessed: processed,
     newType: type,
     newRating: rating,
+    newStrImage: strImage,
   } = await request.json();
   await connectDB();
   await Food.findByIdAndUpdate(id, {
@@ -26,6 +27,7 @@ export async function PUT(request, { params }) {
     processed,
     type,
     rating,
+    strImage,
   });
   return NextResponse.json({ message: "Food updated" }, { status: 200 });
 }

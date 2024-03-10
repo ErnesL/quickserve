@@ -19,7 +19,7 @@ const getFoodById = async (id) => {
 export default async function EditFood({ params }) {
   const { id } = params;
   const { food } = await getFoodById(id);
-  const { title, description, ingredients, price } = food;
+  const { title, description, type, ingredients, price, strImage } = food;
 
-  return <EditFoodForm id={id} title={title} description={description} ingredients={ingredients} price={price} />;
+  return <EditFoodForm id={id} title={title} type={type} description={description} ingredients={ingredients} price={price} strImage={strImage} />;
 }

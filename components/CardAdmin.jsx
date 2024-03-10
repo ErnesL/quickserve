@@ -13,21 +13,12 @@ export default function CardAdmin({
   const defaultImage =
     "https://catering.grupoelescondite.com/wp-content/uploads/2020/07/menu-degustacion.jpg";
 
-    let imagePath = "";
-    if(typeof image === 'string'){
-      console.log(image);
-      imagePath = `/menu/${image}`;
-      console.log(imagePath);
-    } else {
-      imagePath = defaultImage;
-    }
-
-  // const renderImage =
-  //   typeof image === "string" ? (
-  //     <img src={image || defaultImage} alt={title || "Plate"} />
-  //   ) : (
-  //     image
-  //   );
+  let imagePath = "";
+  if (typeof image === "string") {
+    imagePath = `/menu/${image}`;
+  } else {
+    imagePath = defaultImage;
+  }
 
   return (
     <div className="card card-side w-96 bg-black shadow-xls min-w-[30vw]">

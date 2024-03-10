@@ -253,13 +253,6 @@ export default function addFoodForm() {
             {/*div destinado para alojar la imagen*/}
             <div className="flex flex-col items-center gap-y-5 mb-5">
               <div className="w-full">
-                <label
-                  htmlFor="image"
-                  className="block w-full mb-4 text-center"
-                >
-                  Foto de publicación
-                </label>
-
                 <input
                   type="file"
                   name="image"
