@@ -85,7 +85,7 @@ export default function FoodList() {
     >
       <ul>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <li></li>
+          <li key={index}></li>
         ))}
       </ul>
     </Box>

@@ -10,47 +10,33 @@ export default function addFoodForm() {
   const [description, setDescription] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [price, setPrice] = useState("");
-  // const [strImage, setStrImage] = useState("");
-  // const [image, setImage] = useState("");
-  // const [load, setLoad] = useState(false);
+  const [strImage, setStrImage] = useState("");
+  const [file, setFile] = useState("");
   const [type, setType] = useState("");
 
   const router = useRouter();
 
-  // async function transformImage(inputPath) {
-  //   try {
-  //     const image = await Jimp.read(inputPath);
-  //     const transformedImage = image.resize(600, 500).quality(100);
-  //     return new Promise((resolve, reject) => {
-  //       transformedImage.getBuffer(Jimp.MIME_JPEG, (err, buffer) => {
-  //         if (err) reject(err);
-  //         else resolve(new Blob([buffer], { type: Jimp.MIME_JPEG }));
-  //       });
-  //     });
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  // function imageToBase64(file) {
-  //   return new Promise((resolve, reject) => {
-  //     const reader = new FileReader();
-  //     reader.onloadend = () => resolve(reader.result);
-  //     reader.onerror = reject;
-  //     reader.readAsDataURL(file);
-  //   });
-  // }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    //imageToBase64(image).then(async (dataUrl) => {
-    //console.log(dataUrl); // Aquí está tu imagen en base64
-    //setStrImage(dataUrl);
+    if(!file){
+      alert("Debes subir una imagen");
+      return;
+    }
     if (!title || !description || !ingredients || !price) {
       alert("Todos los campos deben haber sido llenados.");
       return;
     }
-
+    const formData = new FormData();
+    formData.append("file", file);
+    const response = await fetch("/api/image", {
+      method: "POST",
+      body: formData,
+    })
+    const data = await response.json();
+    console.log(data)
+    console.log(data.image)
+    console.log(typeof data.image)
+    setStrImage(data.image);
     if (
       type !== "entries" &&
       type !== "food" &&
@@ -72,7 +58,7 @@ export default function addFoodForm() {
           ingredients,
           price,
           type,
-          // strImage,
+          strImage,
         }),
       });
 
@@ -87,67 +73,64 @@ export default function addFoodForm() {
   };
 
   //Código de js para el manejo de eventos de la imagen
-  // const fileInput = useRef(null);
-  // const dropZone = useRef(null);
-  // const img = useRef(null);
-  // const text = useRef(null);
+  const fileInput = useRef(null);
+  const dropZone = useRef(null);
+  const img = useRef(null);
+  const text = useRef(null);
 
-  // const uploadImage = (file) => {
-  //   const fileReader = new FileReader();
+  const uploadImage = (file) => {
+    const fileReader = new FileReader();
 
-  //   const loadHandler = (e) => {
-  //     img.current.setAttribute("src", e.target.result);
-  //     text.current.classList.add("hidden");
-  //     fileReader.removeEventListener("load", loadHandler);
-  //   };
-  //   fileReader.onload = (e) => {
-  //     setLoad(true);
-  //     setImage(file);
-  //   };
-  //   fileReader.addEventListener("load", loadHandler);
-  //   fileReader.readAsDataURL(file);
-  // };
+    const loadHandler = (e) => {
+      img.current.setAttribute("src", e.target.result);
+      text.current.classList.add("hidden");
+      fileReader.removeEventListener("load", loadHandler);
+    };
+    fileReader.onload = (e) => {
+      setFile(file);
+    };
+    fileReader.addEventListener("load", loadHandler);
+    fileReader.readAsDataURL(file);
+  };
 
-  // useEffect(() => {
-  //   const dz = dropZone.current;
-  //   const fi = fileInput.current;
+  useEffect(() => {
+    const dz = dropZone.current;
+    const fi = fileInput.current;
 
-  //   const clickHandler = () => fi.click();
-  //   const dragoverHandler = (e) => {
-  //     e.preventDefault();
-  //     dz.classList.add("form-file__result--active");
-  //   };
-  //   const dragleaveHandler = (e) => {
-  //     e.preventDefault();
-  //     dz.classList.remove("form-file__result--active");
-  //   };
-  //   const dropHandler = (e) => {
-  //     e.preventDefault();
-  //     setLoad(false);
-  //     fi.files = e.dataTransfer.files;
-  //     const file = fi.files[0];
-  //     uploadImage(file);
-  //   };
-  //   const changeHandler = (e) => {
-  //     setLoad(false);
-  //     const file = e.target.files[0];
-  //     uploadImage(file);
-  //   };
+    const clickHandler = () => fi.click();
+    const dragoverHandler = (e) => {
+      e.preventDefault();
+      dz.classList.add("form-file__result--active");
+    };
+    const dragleaveHandler = (e) => {
+      e.preventDefault();
+      dz.classList.remove("form-file__result--active");
+    };
+    const dropHandler = (e) => {
+      e.preventDefault();
+      fi.files = e.dataTransfer.files;
+      const file = fi.files[0];
+      uploadImage(file);
+    };
+    const changeHandler = (e) => {
+      const file = e.target.files[0];
+      uploadImage(file);
+    };
 
-  //   dz.addEventListener("click", clickHandler);
-  //   dz.addEventListener("dragover", dragoverHandler);
-  //   dz.addEventListener("dragleave", dragleaveHandler);
-  //   dz.addEventListener("drop", dropHandler);
-  //   fi.addEventListener("change", changeHandler);
+    dz.addEventListener("click", clickHandler);
+    dz.addEventListener("dragover", dragoverHandler);
+    dz.addEventListener("dragleave", dragleaveHandler);
+    dz.addEventListener("drop", dropHandler);
+    fi.addEventListener("change", changeHandler);
 
-  //   return () => {
-  //     dz.removeEventListener("click", clickHandler);
-  //     dz.removeEventListener("dragover", dragoverHandler);
-  //     dz.removeEventListener("dragleave", dragleaveHandler);
-  //     dz.removeEventListener("drop", dropHandler);
-  //     fi.removeEventListener("change", changeHandler);
-  //   };
-  // }, []);
+    return () => {
+      dz.removeEventListener("click", clickHandler);
+      dz.removeEventListener("dragover", dragoverHandler);
+      dz.removeEventListener("dragleave", dragleaveHandler);
+      dz.removeEventListener("drop", dropHandler);
+      fi.removeEventListener("change", changeHandler);
+    };
+  }, []);
 
   return (
       <div className="p-40 bg-white min-h-[100vh]">
@@ -270,7 +253,7 @@ export default function addFoodForm() {
               </div>
             </div>
             {/*div destinado para alojar la imagen*/}
-            {/* <div className="flex flex-col items-center gap-y-5 mb-5">
+            <div className="flex flex-col items-center gap-y-5 mb-5">
               <div className="w-full">
                 <label
                   htmlFor="image"
@@ -284,6 +267,7 @@ export default function addFoodForm() {
                   name="image"
                   ref={fileInput}
                   className="w-0 h-0 hidden opacity-0"
+                  accept=".jpg"
                 />
               </div>
               <div
@@ -302,7 +286,7 @@ export default function addFoodForm() {
                   alt=""
                 />
               </div>
-            </div> */}
+            </div>
             {/*final del div*/}
             <div className="md:flex md:items-center p-5">
               <div className="md:w-1/3"></div>
