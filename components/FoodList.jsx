@@ -23,9 +23,36 @@ const getFoods = async () => {
   }
 };
 
-const foodObjects = [];
+const getCartData = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/cart", {
+      method: "GET",
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch cart");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log("Error loading cart: ", error);
+  }
+};
 
 async function writeCartToMongoDB(filteredCart) {
+  const foodObjects = [];
+  const cartData = await getCartData();
+
+  // console.log("cart: ", cartData);
+  // console.log("type cart: ", typeof cartData.cart);
+  // console.log("cart: ", cartData.cart);
+  const lastCartItem = cartData.cart[cartData.cart.length - 1];
+  let orderId = 1;
+  if (lastCartItem) {
+    orderId = lastCartItem.orderId + 1;
+  }
+
   filteredCart
     .filter((item) => item !== null)
     .map((item) => {
@@ -37,6 +64,7 @@ async function writeCartToMongoDB(filteredCart) {
         quantity: item.quantity,
         total: item.price * item.quantity,
         processed: false,
+        orderId: orderId,
       });
     });
 
@@ -52,6 +80,7 @@ async function writeCartToMongoDB(filteredCart) {
 
     console.log("Cart written to MongoDB successfully");
     alert("Orden procesada con éxito!");
+
     window.location.reload();
   } catch (error) {
     console.error("Error writing cart to MongoDB: ", error);
@@ -59,6 +88,22 @@ async function writeCartToMongoDB(filteredCart) {
 }
 
 export default function FoodList() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //imageToBase64(image).then(async (dataUrl) => {
+    //console.log(dataUrl); // Aquí está tu imagen en base64
+    //setStrImage(dataUrl);
+    if (!title || !description || !ingredients || !price) {
+      alert("Todos los campos deben haber sido llenados.");
+      return;
+    }
+    try {
+      writeCartToMongoDB;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -147,24 +192,24 @@ export default function FoodList() {
     fetchData();
   }, []);
 
-  const createJsonCart = (filteredCart, paidUsd, subtotal) => {
-    const jsonCart = {
-      foods: [],
-      table: tableNumber,
-      paidUsd: paidUsd,
-      subtotal: subtotal,
-      payment: true,
-    };
+  // const createJsonCart = (filteredCart, paidUsd, subtotal) => {
+  //   const jsonCart = {
+  //     foods: [],
+  //     table: tableNumber,
+  //     paidUsd: paidUsd,
+  //     subtotal: subtotal,
+  //     payment: true,
+  //   };
 
-    for (let i = 0; i < filteredCart.length; i++) {
-      if (filteredCart[i] != null) {
-        jsonCart.foods.push(filteredCart[i]);
-      }
-    }
+  //   for (let i = 0; i < filteredCart.length; i++) {
+  //     if (filteredCart[i] != null) {
+  //       jsonCart.foods.push(filteredCart[i]);
+  //     }
+  //   }
 
-    console.log(jsonCart);
-    alert("Orden enviada");
-  };
+  //   console.log(jsonCart);
+  //   alert("Orden enviada");
+  // };
 
   // Se genera carrito que solo incluye los items con cantidad mayor a 0 pero en la posicion correcta con respecto al arreglo quantity
   const filteredCart = new Array(foods.length).fill(null);
@@ -358,7 +403,7 @@ export default function FoodList() {
         <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
         <br />
         <footer className="flex justify-center">
-        <Image src={Team} alt="Logo" width={250} />
+          <Image src={Team} alt="Logo" width={250} />
         </footer>
       </div>
     </>

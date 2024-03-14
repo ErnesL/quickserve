@@ -1,0 +1,94 @@
+{
+    "cart": {
+      "1": {
+        "table": 5,
+        "products": {
+          "1": {
+            "_id": "65e732d78d53833204a97da0",
+            "title": "NoBU Tower",
+            "description": "Exquisita torre de una cama arroz con atún y salsa dragón, aguacate, pasta dinamita y pescado blanco en salsas dragón y shangay",
+            "ingredients": "Arroz, Atún, Salsas, Aguacate y Pescado Blanco",
+            "price": 14,
+            "quantity": 1,
+            "total": 14,
+            "processed": false,
+            "createdAt": "2024-03-05T14:57:27.431Z",
+            "updatedAt": "2024-03-05T14:57:27.431Z",
+            "__v": 0
+          },
+          "2": {
+            "_id": "65e732d78d53833204a97da0",
+            "title": "NoBU Tower",
+            "description": "Exquisita torre de una cama arroz con atún y salsa dragón, aguacate, pasta dinamita y pescado blanco en salsas dragón y shangay",
+            "ingredients": "Arroz, Atún, Salsas, Aguacate y Pescado Blanco",
+            "price": 14,
+            "quantity": 1,
+            "total": 14,
+            "processed": false,
+            "createdAt": "2024-03-05T14:57:27.431Z",
+            "updatedAt": "2024-03-05T14:57:27.431Z",
+            "__v": 0
+          },
+          "3": {
+            "_id": "65e732d78d53833204a97da0",
+            "title": "NoBU Tower",
+            "description": "Exquisita torre de una cama arroz con atún y salsa dragón, aguacate, pasta dinamita y pescado blanco en salsas dragón y shangay",
+            "ingredients": "Arroz, Atún, Salsas, Aguacate y Pescado Blanco",
+            "price": 14,
+            "quantity": 1,
+            "total": 14,
+            "processed": false,
+            "createdAt": "2024-03-05T14:57:27.431Z",
+            "updatedAt": "2024-03-05T14:57:27.431Z",
+            "__v": 0
+          }
+        }
+      },
+      "2": {
+        "table": 5,
+        "products": {
+          "1": {
+            "_id": "65e732d78d53833204a97da0",
+            "title": "NoBU Tower",
+            "description": "Exquisita torre de una cama arroz con atún y salsa dragón, aguacate, pasta dinamita y pescado blanco en salsas dragón y shangay",
+            "ingredients": "Arroz, Atún, Salsas, Aguacate y Pescado Blanco",
+            "price": 14,
+            "quantity": 1,
+            "total": 14,
+            "processed": false,
+            "createdAt": "2024-03-05T14:57:27.431Z",
+            "updatedAt": "2024-03-05T14:57:27.431Z",
+            "__v": 0
+          },
+          "2": {
+            "_id": "65e732d78d53833204a97da0",
+            "title": "NoBU Tower",
+            "description": "Exquisita torre de una cama arroz con atún y salsa dragón, aguacate, pasta dinamita y pescado blanco en salsas dragón y shangay",
+            "ingredients": "Arroz, Atún, Salsas, Aguacate y Pescado Blanco",
+            "price": 14,
+            "quantity": 1,
+            "total": 14,
+            "processed": false,
+            "createdAt": "2024-03-05T14:57:27.431Z",
+            "updatedAt": "2024-03-05T14:57:27.431Z",
+            "__v": 0
+          },
+          "3": {
+            "_id": "65e732d78d53833204a97da0",
+            "title": "NoBU Tower",
+            "description": "Exquisita torre de una cama arroz con atún y salsa dragón, aguacate, pasta dinamita y pescado blanco en salsas dragón y shangay",
+            "ingredients": "Arroz, Atún, Salsas, Aguacate y Pescado Blanco",
+            "price": 14,
+            "quantity": 1,
+            "total": 14,
+            "processed": false,
+            "createdAt": "2024-03-05T14:57:27.431Z",
+            "updatedAt": "2024-03-05T14:57:27.431Z",
+            "__v": 0
+          }
+        }
+      }
+    }
+  }
+
+

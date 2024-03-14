@@ -15,6 +15,8 @@ export async function POST(request) {
       quantity: cart.quantity,
       total: cart.total,
       processed: cart.processed,
+      orderId: cart.orderId,
+      // table: cart.table,
     });
   }
   return NextResponse.json(
