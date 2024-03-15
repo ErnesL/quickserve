@@ -37,6 +37,13 @@ const CartSchema = new mongoose.Schema(
     clientComments: {
       type: String,
     },
+    orderId: {
+      type: Number,
+    },
+    // table: {
+    //   type: Number,
+    //   require: [true, "Please, input the table number"],
+    // },
   },
 
   { timestamps: true }
