@@ -65,6 +65,7 @@ async function writeCartToMongoDB(filteredCart) {
         total: item.price * item.quantity,
         processed: false,
         orderId: orderId,
+        type: item.type,  
       });
     });
 

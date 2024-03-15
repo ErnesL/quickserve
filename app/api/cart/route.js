@@ -16,6 +16,7 @@ export async function POST(request) {
       total: cart.total,
       processed: cart.processed,
       orderId: cart.orderId,
+      type: cart.type,
       // table: cart.table,
     });
   }
