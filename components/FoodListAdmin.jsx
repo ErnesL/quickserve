@@ -22,18 +22,18 @@ export default async function FoodListAdmin() {
   const { foods } = await getFoodList();
 
   return (
-    <div className="bg-white">
-      <div className="flex justify-center mt-5">
-        <div className=" mt-16">
-          <h1 className="text-xl p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300">
+    <div className="bg-white min-h-[100vh] mt-20">
+      <div className="flex justify-center">
+        <div className="mt-16 mr-96">
+          <h1 className="text-xl p-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300">
             <Link href={`/admin/addFood`} className="max-w-[20%]">
               Añadir Comida
             </Link>
           </h1>
         </div>
-        <div className="flex justify-center mt-16">
-          <h1 className="text-xl p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300">
-            <Link href={"/admin/consumer"} className="max-w-[20%]">
+        <div className="ml-96 mt-16">
+          <h1 className="text-xl p-5 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300">
+            <Link href={"/admin"} className="max-w-[20%]">
               Ordenes en cola
             </Link>
           </h1>
