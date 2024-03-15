@@ -131,7 +131,7 @@ export default function FoodList() {
     >
       <ul>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <li></li>
+          <li key={index}></li>
         ))}
       </ul>
     </Box>
@@ -272,7 +272,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -309,7 +309,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -345,7 +345,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -381,7 +381,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
