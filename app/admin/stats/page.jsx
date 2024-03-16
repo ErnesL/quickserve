@@ -40,7 +40,6 @@ export default async function stats() {
   }
 
   function foodAndQty(cart) {
-    
     const comidasContadas = []; // Array que guarda los nombres de las comidas que ya se contaron
 
     const top5 = []; // Array que guarda Arrays "comidaWCantidad" que a su vez guardan el nombre de la comida y la cantidad de veces que se vendieron
@@ -48,16 +47,24 @@ export default async function stats() {
     let i = 0;
 
     while (i < cart.length - 1) {
-
       const comidaWCantidad = []; // Array que guarda el nombre de la comida y la cantidad de veces que se vendieron
 
-      if (!comidasContadas.includes(cart[i].title)) { // Si la comida no se ha contado
+      if (!comidasContadas.includes(cart[i].title)) {
+        // Si la comida no se ha contado
         comidasContadas.push(cart[i].title);
         comidaWCantidad.push(cart[i].title);
         let elementCount = 0;
         let elementAux = cart[i].title;
         cart.map((element) => {
           if (element.title === elementAux) {
+            const createdAt = new Date(element.createdAt);
+            const createdAtDay = createdAt.getDate();
+            const createdAtMonth = createdAt.getMonth() + 1;
+            const createdAtYear = createdAt.getFullYear();
+            const dat = new Date(createdAtYear, createdAtMonth, createdAtDay);
+            const dat2 = new Date(createdAtYear, createdAtMonth, createdAtDay+7);
+            console.log(dat);
+            console.log(dat2);
             elementCount += element.quantity;
           }
         });

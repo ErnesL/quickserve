@@ -4,7 +4,7 @@
 
 - `002` Necesito que, utilizando `cart`, muestren de forma ordenada (puede ser mediante un carrusel o reutilizando el codigo principal con una numeracion) las comidas almacenadas en `cart`.
 
-- `004` Agregar un formulario para que el cliente pueda escribir cualquier comentario relacionado a su orden y este puede ser accedido como `cart.clientComments`
+- `004` Agregar un formulario para que el cliente pueda escribir cualquier comentario relacionado a su orden y este puede ser accedido como `cart.clientComments` y agregar el numero de mesa a la cual pertence
 
 - Es necesario tener un sistema de reseñas para cada comida individual. Recuerden utilizar `food.rating` para acceder al rating de cada comida.
 
