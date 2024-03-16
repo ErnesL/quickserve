@@ -57,14 +57,6 @@ export default async function stats() {
         let elementAux = cart[i].title;
         cart.map((element) => {
           if (element.title === elementAux) {
-            const createdAt = new Date(element.createdAt);
-            const createdAtDay = createdAt.getDate();
-            const createdAtMonth = createdAt.getMonth() + 1;
-            const createdAtYear = createdAt.getFullYear();
-            const dat = new Date(createdAtYear, createdAtMonth, createdAtDay);
-            const dat2 = new Date(createdAtYear, createdAtMonth, createdAtDay+7);
-            console.log(dat);
-            console.log(dat2);
             elementCount += element.quantity;
           }
         });
@@ -86,6 +78,79 @@ export default async function stats() {
     const array = foodAndQty(cart);
     const top5 = array.slice(-5).reverse();
     return top5;
+  }
+  // const createdAt = new Date(element.createdAt);
+  // const createdAtDay = createdAt.getDate();
+  // const createdAtMonth = createdAt.getMonth() + 1;
+  // const createdAtYear = createdAt.getFullYear();
+  // const dat = new Date(createdAtYear, createdAtMonth, createdAtDay);
+  // const dat2 = new Date(createdAtYear, createdAtMonth, createdAtDay+7);
+  // console.log(dat);
+  // console.log(dat2);
+
+  function gananciasDay(cart) {
+    const ganancias = [];
+    let auxDay1 = new Date(cart[0].createdAt).getDate();
+    let totalPerDay = 0;
+    cart.forEach((element) => {
+      let auxDay2 = new Date(element.createdAt).getDate();
+      if (auxDay1 === auxDay2) {
+        totalPerDay += element.total;
+      } else {
+        totalPerDay = (totalPerDay * 1.15).toFixed(2);
+        ganancias.push(totalPerDay);
+        totalPerDay = 0;
+        totalPerDay += element.total;
+        auxDay1 = auxDay2;
+      }
+    });
+    totalPerDay = (totalPerDay * 1.15).toFixed(2);
+    ganancias.push(totalPerDay);
+    console.log(ganancias);
+    return ganancias;
+  }
+
+  function gananciasWeek(cart) {
+    const ganancias = [];
+    let auxDay1 = new Date(cart[0].createdAt).getDate();
+    let totalPerWeek = 0;
+    cart.forEach((element) => {
+      let auxDay2 = new Date(element.createdAt).getDate();
+      if (auxDay2 - auxDay1 < 6) {
+        totalPerWeek += element.total;
+      } else {
+        totalPerWeek = (totalPerWeek * 1.15).toFixed(2);
+        ganancias.push(totalPerWeek);
+        totalPerWeek = 0;
+        totalPerWeek += element.total;
+        auxDay1 = auxDay2;
+      }
+    });
+    totalPerWeek = (totalPerWeek * 1.15).toFixed(2);
+    ganancias.push(totalPerWeek);
+    return ganancias;
+  }
+
+  function gananciasMonth(cart) {
+    const ganancias = [];
+    let auxMonth1 = new Date(cart[0].createdAt).getMonth();
+    let totalPerMonth = 0;
+    cart.forEach((element) => {
+      let auxMonth2 = new Date(element.createdAt).getMonth();
+      if (auxMonth1 === auxMonth2) {
+        totalPerMonth += element.total;
+      } else {
+        totalPerMonth = (totalPerMonth * 1.15).toFixed(2);
+        ganancias.push(totalPerMonth);
+        totalPerMonth = 0;
+        totalPerMonth += element.total;
+        auxMonth1 = auxMonth2;
+      }
+    });
+    totalPerMonth = (totalPerMonth * 1.15).toFixed(2);
+    ganancias.push(totalPerMonth);
+    console.log(ganancias);
+    return ganancias;
   }
 
   return (
@@ -143,8 +208,66 @@ export default async function stats() {
       <br />
       <br />
       <h2 className="text-center text-3xl font-medium whitespace-nowrap text-[#9974D9]">
-        Ganancias Diarias, Semanales y Mensuales
+        Ganancias Diarias
       </h2>
+      <h3>
+        {gananciasDay(cart).map((t, index) => (
+          <div className="ml-[30vw] rounded-full flex justify-center min-w-[40vw] max-w-[40vw] min-h-[10vh] p-5 bg-[#e2d8ef] m-5">
+            <div className="text-black self-center mr-10">
+              <h2 className="text-[#deca6f] text-6xl">Day {index + 1}</h2>
+            </div>
+            <div className="self-center text-black">
+              <div>
+                <h2 className="text-black text-4xl">Ingreso: $ {t}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </h3>
+      <br />
+      <hr className="border-t-4 border-black max-w-[30vw] mx-auto" />
+      <br />
+      <br />
+      <br />
+      <h2 className="text-center text-3xl font-medium whitespace-nowrap text-[#9974D9]">
+        Ganancias Semanales
+      </h2>
+      <h3>
+        {gananciasWeek(cart).map((t, index) => (
+          <div className="ml-[30vw] rounded-full flex justify-center min-w-[40vw] max-w-[40vw] min-h-[10vh] p-5 bg-[#e2d8ef] m-5">
+            <div className="text-black self-center mr-10">
+              <h2 className="text-[#deca6f] text-6xl">Week {index + 1}</h2>
+            </div>
+            <div className="self-center text-black">
+              <div>
+                <h2 className="text-black text-4xl">Ingreso: $ {t}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </h3>
+      <br />
+      <hr className="border-t-4 border-black max-w-[30vw] mx-auto" />
+      <br />
+      <br />
+      <br />
+      <h2 className="text-center text-3xl font-medium whitespace-nowrap text-[#9974D9]">
+        Ganancias Mensuales
+      </h2>
+      <h3>
+        {gananciasMonth(cart).map((t, index) => (
+          <div className="ml-[30vw] rounded-full flex justify-center min-w-[40vw] max-w-[40vw] min-h-[10vh] p-5 bg-[#e2d8ef] m-5">
+            <div className="text-black self-center mr-10">
+              <h2 className="text-[#deca6f] text-6xl">Month {index + 1}</h2>
+            </div>
+            <div className="self-center text-black">
+              <div>
+                <h2 className="text-black text-4xl">Ingreso: $ {t}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </h3>
       <br />
       <hr className="border-t-4 border-black max-w-[30vw] mx-auto" />
       <br />
