@@ -22,7 +22,7 @@ export default function CustomDrawer({
   return (
     <React.Fragment key={anchor}>
       <Button
-        className="bg-black hover:bg-[#ff5a60d3] text-white font-bold py-2 px-4 rounded-full"
+        className="bg-black hover:bg-[#ff5a60d3] text-white font-bold p-6 rounded-full"
         onClick={() => {
           alert("Un personal de asistencia va en camino a su mesa");
         }}
@@ -30,7 +30,7 @@ export default function CustomDrawer({
         Ayuda
       </Button>
       <Button
-        className="hover:bg-[#9974D9] bg-black p-3 pt-4 text-white rounded-full font-bold"
+        className="hover:bg-[#9974D9] bg-black p-6 text-white rounded-full font-bold"
         onClick={toggleDrawer(anchor, true)}
       >
         Ordenar

@@ -40,33 +40,33 @@ export default async function stats() {
   }
 
   function foodAndQty(cart) {
-    const top5 = [];
-    const aux2 = [];
+    
+    const comidasContadas = []; // Array que guarda los nombres de las comidas que ya se contaron
+
+    const top5 = []; // Array que guarda Arrays "comidaWCantidad" que a su vez guardan el nombre de la comida y la cantidad de veces que se vendieron
 
     let i = 0;
-    let elementAux;
-    let elementCount = 0;
+
     while (i < cart.length - 1) {
-      const aux = [];
-      if (!aux2.includes(cart[i].title)) {
-        aux2.push(cart[i].title);
-        aux.push(cart[i].title);
-        elementCount = 0;
-        elementAux = cart[i].title;
-      }
-      cart.map((element) => {
-        if (element.title === elementAux) {
-          let elementQty = element.quantity;
-          elementCount += elementQty;
-        }
-      });
-      aux.push(elementCount);
-      if (aux.length > 1) {
-        top5.push(aux);
+
+      const comidaWCantidad = []; // Array que guarda el nombre de la comida y la cantidad de veces que se vendieron
+
+      if (!comidasContadas.includes(cart[i].title)) { // Si la comida no se ha contado
+        comidasContadas.push(cart[i].title);
+        comidaWCantidad.push(cart[i].title);
+        let elementCount = 0;
+        let elementAux = cart[i].title;
+        cart.map((element) => {
+          if (element.title === elementAux) {
+            elementCount += element.quantity;
+          }
+        });
+        comidaWCantidad.push(elementCount);
+        top5.push(comidaWCantidad);
       }
       i++;
     }
-    return top5.sort((a, b) => a[1] - b[1]);
+    return top5.sort((a, b) => a[1] - b[1]); // Retorna el array ordenado de menor a mayor
   }
 
   function top5less(cart) {
