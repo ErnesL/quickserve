@@ -153,6 +153,86 @@ export default async function stats() {
     return ganancias;
   }
 
+  function ordenesDay(cart) {
+    const ordenes = [];
+    let auxDay1 = new Date(cart[0].createdAt).getDate();
+    let auxOrder1 = cart[0].orderId;
+    let totalPerDay = 1;
+    cart.forEach((element) => {
+      console.log(totalPerDay);
+      let auxDay2 = new Date(element.createdAt).getDate();
+      let auxOrder2 = element.orderId;
+      if (auxDay1 === auxDay2) {
+        console.log("entro")
+        if (auxOrder1 !== auxOrder2){
+          totalPerDay += 1;
+          auxOrder1 = auxOrder2;  
+        }
+      } else {
+        ordenes.push(totalPerDay);
+        totalPerDay = 0;
+        totalPerDay += 1;
+        auxDay1 = auxDay2;
+        auxOrder1 = auxOrder2;  
+      }
+    });
+    ordenes.push(totalPerDay);
+    console.log(ordenes);
+    return ordenes;
+  }
+
+  function ordenesWeek(cart) {
+    const ordenes = [];
+    let auxDay1 = new Date(cart[0].createdAt).getDate();
+    let auxOrder1 = cart[0].orderId;
+    let totalPerWeek = 1;
+    cart.forEach((element) => {
+      let auxDay2 = new Date(element.createdAt).getDate();
+      let auxOrder2 = element.orderId;
+      if (auxDay2 - auxDay1 < 6) {
+        if (auxOrder1 !== auxOrder2){
+          totalPerWeek += 1;
+          auxOrder1 = auxOrder2;  
+        }
+      } else {
+        ordenes.push(totalPerWeek);
+        totalPerWeek = 0;
+        totalPerWeek += 1;
+        auxDay1 = auxDay2;
+        auxOrder1 = auxOrder2;  
+      }
+    });
+    ordenes.push(totalPerWeek);
+    console.log(ordenes);
+    return ordenes;
+  }
+
+  function ordenesMonth(cart) {
+    const ordenes = [];
+    let auxMonth1 = new Date(cart[0].createdAt).getMonth();
+    let auxOrder1 = cart[0].orderId;
+    let totalPerMonth = 1;
+    cart.forEach((element) => {
+      let auxMonth2 = new Date(element.createdAt).getMonth();
+      let auxOrder2 = element.orderId;
+      if (auxMonth1 === auxMonth2) {
+        if (auxOrder1 !== auxOrder2){
+          totalPerMonth += 1;
+          auxOrder1 = auxOrder2;  
+        }
+      } else {
+        ordenes.push(totalPerMonth);
+        totalPerMonth = 0;
+        totalPerMonth += 1;
+        auxMonth1 = auxMonth2;
+        auxOrder1 = auxOrder2;  
+      }
+    });
+    ordenes.push(totalPerMonth);
+    console.log(ordenes);
+    return ordenes;
+  }
+
   return (
     <div className="bg-white min-h-[100vh] mt-20">
       <br />
@@ -263,6 +343,72 @@ export default async function stats() {
             <div className="self-center text-black">
               <div>
                 <h2 className="text-black text-4xl">Ingreso: $ {t}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </h3>
+      <br />
+      <hr className="border-t-4 border-black max-w-[30vw] mx-auto" />
+      <br />
+      <br />
+      <br />
+      <h2 className="text-center text-3xl font-medium whitespace-nowrap text-[#9974D9]">
+        Ordenes Diarias
+      </h2>
+      <h3>
+        {ordenesDay(cart).map((t, index) => (
+          <div className="ml-[30vw] rounded-full flex justify-center min-w-[40vw] max-w-[40vw] min-h-[10vh] p-5 bg-[#e2d8ef] m-5">
+            <div className="text-black self-center mr-10">
+              <h2 className="text-[#deca6f] text-6xl">Day {index + 1}</h2>
+            </div>
+            <div className="self-center text-black">
+              <div>
+                <h2 className="text-black text-4xl">Cantidad de ordenes: {t}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </h3>
+      <br />
+      <hr className="border-t-4 border-black max-w-[30vw] mx-auto" />
+      <br />
+      <br />
+      <br />
+      <h2 className="text-center text-3xl font-medium whitespace-nowrap text-[#9974D9]">
+        Ordenes Semanales
+      </h2>
+      <h3>
+        {ordenesWeek(cart).map((t, index) => (
+          <div className="ml-[30vw] rounded-full flex justify-center min-w-[40vw] max-w-[40vw] min-h-[10vh] p-5 bg-[#e2d8ef] m-5">
+            <div className="text-black self-center mr-10">
+              <h2 className="text-[#deca6f] text-6xl">Week {index + 1}</h2>
+            </div>
+            <div className="self-center text-black">
+              <div>
+                <h2 className="text-black text-4xl">Cantidad de ordenes: {t}</h2>
+              </div>
+            </div>
+          </div>
+        ))}
+      </h3>
+      <br />
+      <hr className="border-t-4 border-black max-w-[30vw] mx-auto" />
+      <br />
+      <br />
+      <br />
+      <h2 className="text-center text-3xl font-medium whitespace-nowrap text-[#9974D9]">
+        Ordenes Mensuales
+      </h2>
+      <h3>
+        {ordenesMonth(cart).map((t, index) => (
+          <div className="ml-[30vw] rounded-full flex justify-center min-w-[40vw] max-w-[40vw] min-h-[10vh] p-5 bg-[#e2d8ef] m-5">
+            <div className="text-black self-center mr-10">
+              <h2 className="text-[#deca6f] text-6xl">Month {index + 1}</h2>
+            </div>
+            <div className="self-center text-black">
+              <div>
+                <h2 className="text-black text-4xl">Cantidad de ordenes: {t}</h2>
               </div>
             </div>
           </div>
