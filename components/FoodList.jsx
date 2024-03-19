@@ -253,16 +253,13 @@ export default function FoodList() {
         <br />
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black mt-16"
-          id="entradas"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9] mt-20"
+          id="postres"
         >
           ENTRADAS
         </h1>
         <br />
-        <hr
-          className="border-t-4 border-black max-w-[80vw] mx-auto"
-          id="entradas"
-        />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
 
         <div className="flex flex-wrap p-2 justify-center pt-5 z-0">
@@ -293,13 +290,13 @@ export default function FoodList() {
 
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black"
-          id="platos"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
+          id="postres"
         >
           COMIDAS
         </h1>
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
 
         <div className="flex flex-wrap p-2 justify-center pt-5">
@@ -330,13 +327,13 @@ export default function FoodList() {
 
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black"
-          id="bebidas"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
+          id="postres"
         >
           BEBIDAS
         </h1>
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
         <div className="flex flex-wrap p-2 justify-center pt-5">
           {Array.isArray(foods) ? (
@@ -366,13 +363,13 @@ export default function FoodList() {
 
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
           id="postres"
         >
           POSTRES
         </h1>
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
         <div className="flex flex-wrap p-2 justify-center pt-5">
           {Array.isArray(foods) ? (
@@ -401,7 +398,6 @@ export default function FoodList() {
         </div>
 
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
         <br />
         <footer className="flex justify-center">
           <Image src={Team} alt="Logo" width={250} />

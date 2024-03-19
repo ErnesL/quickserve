@@ -78,7 +78,7 @@ export default function EditFoodForm({
         throw new Error("Falló al actualizar el ingrediente");
       }
 
-      router.push("/admin");
+      router.push("/admin/foodList");
       router.refresh();
     } catch (error) {
       console.log(error);
