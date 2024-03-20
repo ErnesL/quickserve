@@ -21,7 +21,12 @@ export default function Card({
   return (
     <div className="card min-h-[100%] card-compact w-96 bg-black shadow-xls overflow-hidden border-2">
       <figure>
-        <img src={imagePath} className="min-w-[100%] max-h-[30vh] min-h-[30vh]" alt={title || "Plate"} />
+        <img
+          loading="lazy"
+          src={imagePath}
+          className="min-w-[100%] max-h-[30vh] min-h-[30vh]"
+          alt={title || "Plate"}
+        />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-white">{title || "Title"}</h2>

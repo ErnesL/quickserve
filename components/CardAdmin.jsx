@@ -22,7 +22,7 @@ export default function CardAdmin({
   return (
     <div className="card card-side w-96 bg-black shadow-xls min-w-[30vw]">
       <figure className="max-w-[10vw] min-w-[10vw]">
-        <img src={imagePath} alt={title || "Plate"} />
+        <img loading="lazy" src={imagePath} alt={title || "Plate"} />
       </figure>
       <div className="card-body min-w-[20vw]">
         <h2 className="card-title text-white">{title || "Title"}</h2>

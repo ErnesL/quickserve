@@ -294,6 +294,7 @@ export default function EditFoodForm({
                 Arrastra y suelta aquí
               </p>
               <img
+                loading="lazy"
                 className="w-full h-full z-50 object-cover"
                 ref={img}
                 alt=""

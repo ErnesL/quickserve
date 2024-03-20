@@ -65,7 +65,7 @@ async function writeCartToMongoDB(filteredCart) {
         total: item.price * item.quantity,
         processed: false,
         orderId: orderId,
-        type: item.type,  
+        type: item.type,
       });
     });
 
@@ -396,9 +396,6 @@ export default function FoodList() {
             <p>Cargando alimentos...</p>
           )}
         </div>
-
-        <br />
-        <br />
         <footer className="flex justify-center">
           <Image src={Team} alt="Logo" width={250} />
         </footer>
