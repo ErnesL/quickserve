@@ -23,9 +23,36 @@ const getFoods = async () => {
   }
 };
 
-const foodObjects = [];
+const getCartData = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/cart", {
+      method: "GET",
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch cart");
+    }
+
+    return res.json();
+  } catch (error) {
+    console.log("Error loading cart: ", error);
+  }
+};
 
 async function writeCartToMongoDB(filteredCart) {
+  const foodObjects = [];
+  const cartData = await getCartData();
+
+  // console.log("cart: ", cartData);
+  // console.log("type cart: ", typeof cartData.cart);
+  // console.log("cart: ", cartData.cart);
+  const lastCartItem = cartData.cart[cartData.cart.length - 1];
+  let orderId = 1;
+  if (lastCartItem) {
+    orderId = lastCartItem.orderId + 1;
+  }
+
   filteredCart
     .filter((item) => item !== null)
     .map((item) => {
@@ -37,6 +64,8 @@ async function writeCartToMongoDB(filteredCart) {
         quantity: item.quantity,
         total: item.price * item.quantity,
         processed: false,
+        orderId: orderId,
+        type: item.type,
       });
     });
 
@@ -52,6 +81,7 @@ async function writeCartToMongoDB(filteredCart) {
 
     console.log("Cart written to MongoDB successfully");
     alert("Orden procesada con éxito!");
+
     window.location.reload();
   } catch (error) {
     console.error("Error writing cart to MongoDB: ", error);
@@ -59,6 +89,22 @@ async function writeCartToMongoDB(filteredCart) {
 }
 
 export default function FoodList() {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    //imageToBase64(image).then(async (dataUrl) => {
+    //console.log(dataUrl); // Aquí está tu imagen en base64
+    //setStrImage(dataUrl);
+    if (!title || !description || !ingredients || !price) {
+      alert("Todos los campos deben haber sido llenados.");
+      return;
+    }
+    try {
+      writeCartToMongoDB;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const [state, setState] = React.useState({
     right: false,
   });
@@ -85,7 +131,7 @@ export default function FoodList() {
     >
       <ul>
         {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-          <li></li>
+          <li key={index}></li>
         ))}
       </ul>
     </Box>
@@ -147,24 +193,24 @@ export default function FoodList() {
     fetchData();
   }, []);
 
-  const createJsonCart = (filteredCart, paidUsd, subtotal) => {
-    const jsonCart = {
-      foods: [],
-      table: tableNumber,
-      paidUsd: paidUsd,
-      subtotal: subtotal,
-      payment: true,
-    };
+  // const createJsonCart = (filteredCart, paidUsd, subtotal) => {
+  //   const jsonCart = {
+  //     foods: [],
+  //     table: tableNumber,
+  //     paidUsd: paidUsd,
+  //     subtotal: subtotal,
+  //     payment: true,
+  //   };
 
-    for (let i = 0; i < filteredCart.length; i++) {
-      if (filteredCart[i] != null) {
-        jsonCart.foods.push(filteredCart[i]);
-      }
-    }
+  //   for (let i = 0; i < filteredCart.length; i++) {
+  //     if (filteredCart[i] != null) {
+  //       jsonCart.foods.push(filteredCart[i]);
+  //     }
+  //   }
 
-    console.log(jsonCart);
-    alert("Orden enviada");
-  };
+  //   console.log(jsonCart);
+  //   alert("Orden enviada");
+  // };
 
   // Se genera carrito que solo incluye los items con cantidad mayor a 0 pero en la posicion correcta con respecto al arreglo quantity
   const filteredCart = new Array(foods.length).fill(null);
@@ -207,16 +253,13 @@ export default function FoodList() {
         <br />
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black mt-16"
-          id="entradas"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9] mt-20"
+          id="postres"
         >
           ENTRADAS
         </h1>
         <br />
-        <hr
-          className="border-t-4 border-black max-w-[80vw] mx-auto"
-          id="entradas"
-        />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
 
         <div className="flex flex-wrap p-2 justify-center pt-5 z-0">
@@ -226,7 +269,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -247,13 +290,13 @@ export default function FoodList() {
 
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black"
-          id="platos"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
+          id="postres"
         >
           COMIDAS
         </h1>
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
 
         <div className="flex flex-wrap p-2 justify-center pt-5">
@@ -263,7 +306,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -284,13 +327,13 @@ export default function FoodList() {
 
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black"
-          id="bebidas"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
+          id="postres"
         >
           BEBIDAS
         </h1>
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
         <div className="flex flex-wrap p-2 justify-center pt-5">
           {Array.isArray(foods) ? (
@@ -299,7 +342,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -320,13 +363,13 @@ export default function FoodList() {
 
         <br />
         <h1
-          className="text-center text-2xl font-semibold whitespace-nowrap dark:text-black"
+          className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
           id="postres"
         >
           POSTRES
         </h1>
         <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
+        <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
         <br />
         <div className="flex flex-wrap p-2 justify-center pt-5">
           {Array.isArray(foods) ? (
@@ -335,7 +378,7 @@ export default function FoodList() {
                 return (
                   <div className="p-3" key={food.id || index}>
                     <Card
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -353,12 +396,8 @@ export default function FoodList() {
             <p>Cargando alimentos...</p>
           )}
         </div>
-
-        <br />
-        <hr className="border-t-4 border-black max-w-[80vw] mx-auto" />
-        <br />
         <footer className="flex justify-center">
-        <Image src={Team} alt="Logo" width={250} />
+          <Image src={Team} alt="Logo" width={250} />
         </footer>
       </div>
     </>

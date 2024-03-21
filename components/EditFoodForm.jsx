@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 
 export default function EditFoodForm({
@@ -10,18 +10,44 @@ export default function EditFoodForm({
   description,
   ingredients,
   price,
+  strImage,
 }) {
+  console.log(type);
+  const defaultImage = `/menu/menu-degustacion.jpg`;
+
+  let imagePath = "";
+  if (typeof strImage === "string") {
+    imagePath = `/menu/${strImage}`;
+  } else {
+    imagePath = defaultImage;
+  }
   const [newTitle, setNewTitle] = useState(title);
   const [newDescription, setNewDescription] = useState(description);
   const [newIngredients, setNewIngredients] = useState(ingredients);
   const [newPrice, setNewPrice] = useState(price);
+  const [newFile, setNewFile] = useState("");
+  const [newImage, setImage] = useState(imagePath);
   const [newType, setNewType] = useState(type);
 
   const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (!newFile) {
+      alert("Debes subir una imagen");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("file", newFile);
+    const response = await fetch("/api/image", {
+      method: "POST",
+      body: formData,
+    });
+    const data = await response.json();
+    console.log(data);
+    console.log(data.image);
+    console.log(typeof data.image);
+    console.log(newType);
     if (
       newType !== "entries" &&
       newType !== "food" &&
@@ -44,6 +70,7 @@ export default function EditFoodForm({
           newIngredients,
           newPrice,
           newType,
+          newStrImage: data.image,
         }),
       });
 
@@ -51,12 +78,79 @@ export default function EditFoodForm({
         throw new Error("Falló al actualizar el ingrediente");
       }
 
-      router.push("/admin");
+      router.push("/admin/foodList");
       router.refresh();
     } catch (error) {
       console.log(error);
     }
   };
+
+  //Código de js para el manejo de eventos de la imagen
+  const fileInput = useRef(null);
+  const dropZone = useRef(null);
+  const img = useRef(null);
+  const text = useRef(null);
+
+  const uploadImage = (file) => {
+    const fileReader = new FileReader();
+
+    const loadHandler = (e) => {
+      img.current.setAttribute("src", e.target.result);
+      text.current.classList.add("hidden");
+      fileReader.removeEventListener("load", loadHandler);
+    };
+    fileReader.onload = (e) => {
+      setNewFile(file);
+    };
+    fileReader.addEventListener("load", loadHandler);
+    fileReader.readAsDataURL(file);
+  };
+
+  useEffect(() => {
+    const dz = dropZone.current;
+    const fi = fileInput.current;
+    fetch(imagePath)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const file = new File([blob], strImage, { type: blob.type });
+        uploadImage(file);
+      })
+      .catch((error) => console.error(error));
+    const clickHandler = () => fi.click();
+    const dragoverHandler = (e) => {
+      e.preventDefault();
+      dz.classList.add("form-file__result--active");
+    };
+    const dragleaveHandler = (e) => {
+      e.preventDefault();
+      dz.classList.remove("form-file__result--active");
+    };
+    const dropHandler = (e) => {
+      e.preventDefault();
+      fi.files = e.dataTransfer.files;
+      const file = fi.files[0];
+      console.log(file);
+      uploadImage(file);
+    };
+    const changeHandler = (e) => {
+      const file = e.target.files[0];
+      uploadImage(file);
+    };
+
+    dz.addEventListener("click", clickHandler);
+    dz.addEventListener("dragover", dragoverHandler);
+    dz.addEventListener("dragleave", dragleaveHandler);
+    dz.addEventListener("drop", dropHandler);
+    fi.addEventListener("change", changeHandler);
+
+    return () => {
+      dz.removeEventListener("click", clickHandler);
+      dz.removeEventListener("dragover", dragoverHandler);
+      dz.removeEventListener("dragleave", dragleaveHandler);
+      dz.removeEventListener("drop", dropHandler);
+      fi.removeEventListener("change", changeHandler);
+    };
+  }, []);
 
   return (
     <div className="p-40 bg-white min-h-[100vh]">
@@ -66,15 +160,12 @@ export default function EditFoodForm({
         </h1>
       </div>
       <div className="flex justify-center content-center p-5">
-        <form
-          onSubmit={handleSubmit}
-          className="w-full max-w-sm"
-        >
+        <form onSubmit={handleSubmit} className="w-full max-w-sm">
           <div className="md:flex md:items-center mb-6">
             <div className="md:w-1/3">
               <label
                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                for="name"
+                htmlFor="name"
               >
                 Nombre:
               </label>
@@ -121,7 +212,7 @@ export default function EditFoodForm({
             <div className="md:w-1/3">
               <label
                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                for="description"
+                htmlFor="description"
               >
                 Descripcion:
               </label>
@@ -142,7 +233,7 @@ export default function EditFoodForm({
             <div className="md:w-1/3">
               <label
                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                for="ingredients"
+                htmlFor="ingredients"
               >
                 Ingredientes:
               </label>
@@ -163,7 +254,7 @@ export default function EditFoodForm({
             <div className="md:w-1/3">
               <label
                 className="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-                for="price"
+                htmlFor="price"
               >
                 Precios:
               </label>
@@ -181,9 +272,37 @@ export default function EditFoodForm({
               />
             </div>
           </div>
-
+          {/*div destinado para alojar la imagen*/}
+          <div className="flex flex-col items-center gap-y-5 mb-5">
+            <div className="w-full">
+              <input
+                type="file"
+                name="image"
+                ref={fileInput}
+                className="w-0 h-0 hidden opacity-0"
+                accept=".jpg"
+              />
+            </div>
+            <div
+              className="overflow-hidden relative w-full h-72 bg-slate-950 rounded-lg <transition-colors border border-dashed border-blue-800 transition-colors duration-300 ease-linear z-10"
+              ref={dropZone}
+            >
+              <p
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+                ref={text}
+              >
+                Arrastra y suelta aquí
+              </p>
+              <img
+                loading="lazy"
+                className="w-full h-full z-50 object-cover"
+                ref={img}
+                alt=""
+              />
+            </div>
+          </div>
+          {/*final del div*/}
           <div className="flex justify-center md:items-center p-5">
-            
             <div className="">
               <button
                 className="font-bold p-3 m-5 rounded-full bg-black hover:bg-[#9974D9] text-white duration-300"

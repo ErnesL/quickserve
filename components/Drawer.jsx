@@ -22,7 +22,7 @@ export default function CustomDrawer({
   return (
     <React.Fragment key={anchor}>
       <Button
-        className="bg-black hover:bg-[#ff5a60d3] text-white font-bold py-2 px-4 rounded-full"
+        className="bg-black hover:bg-[#ff5a60d3] text-white font-bold p-6 rounded-full"
         onClick={() => {
           alert("Un personal de asistencia va en camino a su mesa");
         }}
@@ -30,7 +30,7 @@ export default function CustomDrawer({
         Ayuda
       </Button>
       <Button
-        className="hover:bg-[#9974D9] bg-black p-3 pt-4 text-white rounded-full font-bold"
+        className="hover:bg-[#9974D9] bg-black p-6 text-white rounded-full font-bold"
         onClick={toggleDrawer(anchor, true)}
       >
         Ordenar
@@ -53,7 +53,7 @@ export default function CustomDrawer({
                 food != null ? (
                   <li key={index} className="m-5">
                     <CardPreview
-                      image={<h1>IMAGEN</h1>}
+                      image={food.strImage}
                       title={food.title}
                       ingredients={food.ingredients}
                       description={food.description}
@@ -85,15 +85,15 @@ export default function CustomDrawer({
             <h4 className="mb-2 text-center text-5xl font-bold tracking-tight tet-[#9974D9] p-4">
               <br />
               <hr
-        className="border-t-4 border-black max-w-[80vw] mx-auto"
-        id="entradas"
-      />
+                className="border-t-4 border-black max-w-[80vw] mx-auto"
+                id="entradas"
+              />
               <br />
               Factura
               <br />
-            <br />
+              <br />
             </h4>
-            
+
             <br />
             <div className="flex justify-end max-w-[80%] p-2 ml-5">
               <div className="">
@@ -102,7 +102,10 @@ export default function CustomDrawer({
                 </h6>
               </div>
               <div>
-              <h6 className="ml-3 font-bold text-4xl"> ${subtotal} <br /></h6>
+                <h6 className="ml-3 font-bold text-4xl">
+                  {" "}
+                  ${subtotal} <br />
+                </h6>
               </div>
             </div>
 
@@ -113,7 +116,10 @@ export default function CustomDrawer({
                 </h6>
               </div>
               <div>
-              <h6 className=" ml-3 font-bold text-4xl"> ${taxes} <br /> </h6>
+                <h6 className=" ml-3 font-bold text-4xl">
+                  {" "}
+                  ${taxes} <br />{" "}
+                </h6>
               </div>
             </div>
 
@@ -124,11 +130,18 @@ export default function CustomDrawer({
                 </h6>
               </div>
               <div>
-              <h6 className=" ml-3 font-bold text-4xl"> ${total} <br /> <br /> <br /> </h6>
+                <h6 className=" ml-3 font-bold text-4xl">
+                  {" "}
+                  ${total} <br /> <br /> <br />{" "}
+                </h6>
+                <br />
+                <h6 className="text-center font-bold">TODO 004</h6>
+                <br />
+                <br />
               </div>
             </div>
             <br />
-            
+
             <br />
             <button
               className=" bg-black self-center  max-w-[25%] w-full p-3 rounded-full font-bold text-white hover:bg-[#9974D9] "
