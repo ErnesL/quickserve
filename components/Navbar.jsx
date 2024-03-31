@@ -30,10 +30,10 @@ export default function NavBar() {
             </li>
             <li>
               <a
-                href="#platos"
+                href="#principales"
                 className="block py-2 px-3 text-white rounded hover:text-[#9974D9]"
               >
-                Platos
+                Principales
               </a>
             </li>
             <li>

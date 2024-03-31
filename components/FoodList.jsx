@@ -254,7 +254,7 @@ export default function FoodList() {
         <br />
         <h1
           className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9] mt-20"
-          id="postres"
+          id="entradas"
         >
           ENTRADAS
         </h1>
@@ -291,9 +291,9 @@ export default function FoodList() {
         <br />
         <h1
           className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
-          id="postres"
+          id="principales"
         >
-          COMIDAS
+          PRINCIPALES
         </h1>
         <br />
         <hr className="border-t-4 border-[#9974D9] max-w-[80vw] mx-auto" />
@@ -328,7 +328,7 @@ export default function FoodList() {
         <br />
         <h1
           className="text-center text-6xl font-medium whitespace-nowrap text-[#9974D9]"
-          id="postres"
+          id="bebidas"
         >
           BEBIDAS
         </h1>
